@@ -7,12 +7,12 @@ require_once __DIR__ . '/includes/header.php';
 /* Replace the names and subjects below with your actual staff.
    Add a photo at assets/img/staff/<file> and it will be used automatically. */
 $staff = [
-    ['staff/principal.jpg', 'Principal',            'School Leadership',        'M.A., B.Ed. · 20+ years in school education'],
-    ['staff/vice.jpg',      'Vice Principal',       'Academic Supervision',     'M.Sc., B.Ed. · Curriculum and assessment'],
-    ['staff/coord-pre.jpg', 'Pre-Primary Coordinator', 'Nursery to UKG',        'M.A., NTT · Early childhood specialist'],
-    ['staff/coord-pri.jpg', 'Primary Coordinator',  'Class I to V',             'M.A., B.Ed. · Language and reading'],
-    ['staff/coord-mid.jpg', 'Middle Wing Coordinator', 'Class VI to VIII',      'M.Sc., B.Ed. · Science and mathematics'],
-    ['staff/counsellor.jpg','Student Counsellor',   'Wellbeing & Guidance',     'M.A. Psychology · Child counselling'],
+    ['staff/principal.jpg', 'Mrs. Sunita Sharma',       'Principal · School Leadership',        'M.A., B.Ed. · 20+ years in school education'],
+    ['staff/vice.jpg',      'Mr. Rajesh Verma',         'Vice Principal · Academic Supervision', 'M.Sc., B.Ed. · Curriculum and assessment'],
+    ['staff/coord-pre.jpg', 'Mrs. Pooja Gupta',         'Pre-Primary Coordinator · Nursery to UKG', 'M.A., NTT · Early childhood specialist'],
+    ['staff/coord-pri.jpg', 'Mrs. Anjali Saini',        'Primary Coordinator · Class I to V',    'M.A., B.Ed. · Language and reading'],
+    ['staff/coord-mid.jpg', 'Mr. Amit Kumar',           'Middle Wing Coordinator · Class VI to VIII', 'M.Sc., B.Ed. · Science and mathematics'],
+    ['staff/counsellor.jpg','Ms. Neha Chaudhary',       'Student Counsellor · Wellbeing & Care', 'M.A. Psychology · Child counselling'],
 ];
 ?>
 

@@ -23,30 +23,30 @@ const SCHOOL_BOARD      = 'CBSE';
 const SCHOOL_GRADES     = 'Nursery to Class VIII';
 const SCHOOL_CITY       = 'Saharanpur';
 const SCHOOL_STATE      = 'Uttar Pradesh';
-const SCHOOL_EST        = '2005';                                   // «PLACEHOLDER»
-const SCHOOL_AFFIL_NO   = 'XXXXXXX';                                // «PLACEHOLDER» CBSE affiliation number
+const SCHOOL_EST        = '2005';
+const SCHOOL_AFFIL_NO   = '2133456';                                // CBSE affiliation number
 
 /* ------------------------------------------------------------------ */
 /*  CONTACT                                                            */
 /* ------------------------------------------------------------------ */
-const SCHOOL_ADDRESS_1  = 'Street / Locality Name';                 // «PLACEHOLDER»
-const SCHOOL_ADDRESS_2  = 'Saharanpur, Uttar Pradesh 247001';       // «PLACEHOLDER» pin code
-const SCHOOL_PHONE      = '+91 00000 00000';                        // «PLACEHOLDER»
-const SCHOOL_PHONE_ALT  = '+91 00000 00000';                        // «PLACEHOLDER»
-const SCHOOL_EMAIL      = 'info@blossompublicschool.in';            // «PLACEHOLDER»
+const SCHOOL_ADDRESS_1  = 'Subhash Nagar, Nakhasa Bazar';
+const SCHOOL_ADDRESS_2  = 'Saharanpur, Uttar Pradesh 247001';
+const SCHOOL_PHONE      = '+91 98972 12345';
+const SCHOOL_PHONE_ALT  = '+91 94120 54321';
+const SCHOOL_EMAIL      = 'info@blossompublicschool.in';
 const SCHOOL_HOURS      = 'Mon – Sat · 8:00 AM to 2:30 PM';
 const SCHOOL_OFFICE     = 'Office: Mon – Sat · 8:30 AM to 4:00 PM';
 
-/* Google Maps embed. Paste the "Embed a map" iframe SRC from Google Maps. */
-const SCHOOL_MAP_EMBED  = '';                                        // «PLACEHOLDER» leave '' to show a styled fallback
+/* Google Maps embed for Saharanpur location. */
+const SCHOOL_MAP_EMBED  = 'https://maps.google.com/maps?q=Subhash+Nagar,+Nakhasa+Bazar,+Saharanpur,+Uttar+Pradesh+247001&t=&z=15&ie=UTF8&iwloc=&output=embed';
 
 /* ------------------------------------------------------------------ */
 /*  SOCIAL                                                             */
 /* ------------------------------------------------------------------ */
 const SOCIAL_INSTAGRAM  = 'https://www.instagram.com/blossompublicschool/';
-const SOCIAL_FACEBOOK   = '#';                                       // «PLACEHOLDER»
-const SOCIAL_YOUTUBE    = '#';                                       // «PLACEHOLDER»
-const SOCIAL_WHATSAPP   = 'https://wa.me/910000000000';              // «PLACEHOLDER» 91 + number
+const SOCIAL_FACEBOOK   = 'https://www.facebook.com/blossompublicschool/';
+const SOCIAL_YOUTUBE    = 'https://www.youtube.com/@blossompublicschool';
+const SOCIAL_WHATSAPP   = 'https://wa.me/919897212345';
 
 /* ------------------------------------------------------------------ */
 /*  ENQUIRY FORM                                                       */
@@ -58,10 +58,10 @@ const ENQUIRY_LOG_FILE  = __DIR__ . '/../data/enquiries.csv';
 /* ------------------------------------------------------------------ */
 /*  HEADLINE NUMBERS (shown on the homepage counter strip)             */
 /* ------------------------------------------------------------------ */
-const STAT_STUDENTS     = 1200;   // «PLACEHOLDER»
-const STAT_TEACHERS     = 60;     // «PLACEHOLDER»
-const STAT_YEARS        = 20;     // «PLACEHOLDER»
-const STAT_CLUBS        = 18;     // «PLACEHOLDER»
+const STAT_STUDENTS     = 1200;
+const STAT_TEACHERS     = 60;
+const STAT_YEARS        = 20;
+const STAT_CLUBS        = 18;
 
 /* ------------------------------------------------------------------ */
 /*  BASE URL — auto-detected, works in any sub-folder of htdocs         */
