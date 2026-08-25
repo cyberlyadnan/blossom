@@ -1,0 +1,24 @@
+Drop the school's real photographs into this folder.
+
+Any file you add with one of these names replaces the coloured placeholder
+automatically — no code change needed.
+
+  hero-1.jpg / hero-2.jpg / hero-3.jpg   homepage slideshow  (wide, ~1920x1080)
+  campus.jpg                             homepage "welcome" photo
+  about-campus.jpg                       About page photo
+  principal.jpg                          Principal portrait   (portrait, 3:4)
+  pre-primary.jpg / primary.jpg / middle.jpg   the three academic wings
+  classroom.jpg                          smart classroom
+  lab.jpg                                science laboratory
+  computer.jpg                           computer lab
+  library.jpg                            library
+  sports.jpg                             sports ground
+  arts.jpg                               music / dance / art
+  safety.jpg                             safety section
+  bus.jpg                                school transport
+  faculty.jpg                            faculty group photo
+
+  staff/     -> individual staff photos (square). See faculty.php
+  gallery/   -> gallery photos.          See the list at the top of gallery.php
+
+Keep each image under about 400 KB so the pages stay fast.

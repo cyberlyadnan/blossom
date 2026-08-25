@@ -1,0 +1,5 @@
+ErrorDocument 404 /blossom/404.php
+Options -Indexes
+<FilesMatch "\.(csv)$">
+  Require all denied
+</FilesMatch>

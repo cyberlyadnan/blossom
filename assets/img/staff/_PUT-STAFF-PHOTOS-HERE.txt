@@ -1,0 +1,1 @@
+Put individual staff photos here (square crops), then update the $staff list in faculty.php
