@@ -40,11 +40,30 @@ function is_current(string $file): bool
  */
 function media(string $name, string $label = '', int $tone = 1, string $class = '', string $ratio = '4/3'): string
 {
-    $file = __DIR__ . '/../assets/img/' . $name;
-    $style = 'aspect-ratio:' . $ratio . ';';
+    $baseDir = __DIR__ . '/../assets/img/';
+    $file = $baseDir . $name;
+    $foundName = null;
+
     if (is_file($file)) {
+        $foundName = $name;
+    } else {
+        $info = pathinfo($name);
+        $dirname = ($info['dirname'] !== '.' && $info['dirname'] !== '') ? $info['dirname'] . '/' : '';
+        $filename = trim($info['filename']);
+        $exts = ['png', 'jpg', 'jpeg', 'webp', 'PNG', 'JPG', 'JPEG'];
+        foreach ($exts as $ext) {
+            $altName = $dirname . $filename . '.' . $ext;
+            if (is_file($baseDir . $altName)) {
+                $foundName = $altName;
+                break;
+            }
+        }
+    }
+
+    $style = 'aspect-ratio:' . $ratio . ';';
+    if ($foundName !== null) {
         return '<figure class="media ' . e($class) . '" style="' . e($style) . '">'
-             . '<img src="' . e(asset('img/' . $name)) . '" alt="' . e($label) . '" loading="lazy" decoding="async">'
+             . '<img src="' . e(asset('img/' . $foundName)) . '" alt="' . e($label) . '" loading="lazy" decoding="async">'
              . '</figure>';
     }
     $tone = max(1, min(8, $tone));
@@ -64,9 +83,13 @@ function blossom_glyph(): string
          . '</g></svg>';
 }
 
-/** Inline school crest (SVG) — no image file required. */
+/** Inline school crest (SVG or official logo image). */
 function crest(int $size = 44): string
 {
+    $file = __DIR__ . '/../assets/img/logos.png';
+    if (is_file($file)) {
+        return '<img class="crest-img" src="' . e(asset('img/logos.png')) . '" alt="' . e(SCHOOL_NAME) . ' Logo" width="' . $size . '" height="' . $size . '" style="object-fit:contain; width:' . $size . 'px; height:' . $size . 'px; border-radius:50%; display:inline-block; vertical-align:middle;">';
+    }
     $s = (string) $size;
     return '<svg class="crest" width="' . $s . '" height="' . $s . '" viewBox="0 0 64 64" fill="none" aria-hidden="true">'
          . '<defs><linearGradient id="cg1" x1="0" y1="0" x2="1" y2="1">'

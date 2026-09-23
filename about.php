@@ -47,7 +47,7 @@ require_once __DIR__ . '/includes/header.php';
       </div>
     </div>
     <div data-reveal data-delay="1">
-      <div class="frame"><?= media('about-campus.jpg', 'The Campus', 2, '', '4/5') ?></div>
+      <div class="frame"><?= media('achievers.jpg', 'The Campus', 2, '', '4/5') ?></div>
     </div>
   </div>
 </section>
@@ -110,7 +110,7 @@ require_once __DIR__ . '/includes/header.php';
     </div>
     <div data-reveal data-delay="1">
       <span class="eyebrow">Principal's Message</span>
-      <h2>“Ask our children what they learnt today. Their answer is our real report card.”</h2>
+      <h2 style="font-size:clamp(1.35rem,2.2vw,1.85rem);line-height:1.25">“Ask our children what they learnt today. Their answer is our real report card.”</h2>
       <div class="rule"></div>
       <p class="lede mt-3">
         Dear Parents, thank you for considering <?= e(SCHOOL_NAME) ?> for your child. A school makes

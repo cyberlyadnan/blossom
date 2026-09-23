@@ -77,29 +77,48 @@ $slides = [
 
 <!-- ============ NOTICE TICKER ============ -->
 <div class="ticker">
-  <span class="ticker__tag">Latest</span>
-  <div class="ticker__track">
-    <?php $notices = [
-        'Admissions open for Nursery to Class VIII — limited seats per section',
-        'Annual Day rehearsals begin this month — parents invited',
-        'Inter-house Science Quiz winners announced',
-        'Parent–Teacher Meeting scheduled for the last Saturday of the month',
-    ];
-    foreach ([1, 2] as $pass) {
-        foreach ($notices as $n) echo '<span>' . e($n) . '</span>';
-    } ?>
+  <div class="ticker__tag">
+    <span class="ticker__tag-dot"></span>
+    <span>Latest</span>
+  </div>
+  <div class="ticker__viewport">
+    <div class="ticker__track">
+      <?php $notices = [
+          'Admissions open for Nursery to Class VIII — limited seats per section',
+          'Annual Day rehearsals begin this month — parents invited',
+          'Inter-house Science Quiz winners announced',
+          'Parent–Teacher Meeting scheduled for the last Saturday of the month',
+      ];
+      foreach ([1, 2] as $pass) {
+          foreach ($notices as $n) echo '<span class="ticker__item">' . e($n) . '</span>';
+      } ?>
+    </div>
   </div>
 </div>
 
 <!-- ============ WELCOME ============ -->
-<section class="section">
-  <div class="wrap split split--wide">
-    <div data-reveal>
-      <div class="frame">
-        <?= media('campus.jpg', 'Our Campus', 1, '', '4/3') ?>
+<section class="section section--welcome">
+  <div class="wrap split split--welcome">
+    <div data-reveal class="welcome-visual">
+      <div class="welcome-visual__main frame">
+        <?= media('campus.jpg', 'Our Campus', 1, 'media--welcome', '4/5') ?>
+        <div class="welcome-badge" data-reveal data-delay="2">
+          <span class="welcome-badge__icon"><?= icon('award') ?></span>
+          <div>
+            <strong>20+ Years</strong>
+            <span>Of Academic Trust &amp; Care</span>
+          </div>
+        </div>
+      </div>
+      <div class="welcome-stat-card" data-reveal data-delay="3">
+        <div class="welcome-stat-card__icon"><?= icon('users') ?></div>
+        <div>
+          <b class="welcome-stat-card__num">1:25</b>
+          <span class="welcome-stat-card__label">Attentive Ratio</span>
+        </div>
       </div>
     </div>
-    <div data-reveal data-delay="1">
+    <div data-reveal data-delay="1" class="welcome-content">
       <span class="eyebrow">Welcome to <?= e(SCHOOL_SHORT) ?></span>
       <h2>A school small enough to know your child, serious enough to shape them.</h2>
       <div class="rule"></div>
@@ -108,19 +127,34 @@ $slides = [
         seen. Our classrooms in <?= e(SCHOOL_CITY) ?> are deliberately sized so that every child is
         spoken to by name, every day — and every teacher knows exactly where each learner stands.
       </p>
-      <p class="mt-2">
-        From the first days of Nursery through the demanding years of Middle School, we follow the
-        <?= e(SCHOOL_BOARD) ?> framework with an emphasis on conceptual clarity over rote learning,
-        supported by activity-led teaching, structured reading and consistent parent communication.
-      </p>
-      <ul class="checklist mt-3">
-        <li><?= icon('check') ?><span><strong>Concept-first teaching</strong> — understanding before memorising, in every subject.</span></li>
-        <li><?= icon('check') ?><span><strong>Small sections</strong> so remedial help reaches a child in days, not terms.</span></li>
-        <li><?= icon('check') ?><span><strong>A safe, watched campus</strong> — CCTV coverage, verified staff and trained caregivers.</span></li>
-      </ul>
-      <div class="btn-row mt-3">
-        <a class="btn" href="<?= e(url('about.php')) ?>">More About Us <?= icon('arrow') ?></a>
-        <a class="link-arrow" href="<?= e(url('about.php#principal')) ?>">Read the Principal's message</a>
+      
+      <div class="welcome-features mt-3">
+        <div class="welcome-feat">
+          <span class="welcome-feat__ico"><?= icon('check') ?></span>
+          <div>
+            <strong>Concept-first teaching</strong>
+            <p>Understanding before memorising, in every subject</p>
+          </div>
+        </div>
+        <div class="welcome-feat">
+          <span class="welcome-feat__ico"><?= icon('check') ?></span>
+          <div>
+            <strong>Small, attentive sections</strong>
+            <p>Remedial help reaches a child in days, not terms</p>
+          </div>
+        </div>
+        <div class="welcome-feat">
+          <span class="welcome-feat__ico"><?= icon('check') ?></span>
+          <div>
+            <strong>A safe, watched campus</strong>
+            <p>CCTV coverage, verified staff and trained caregivers</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row mt-4">
+        <a class="btn btn--gold" href="<?= e(url('about.php')) ?>">Discover the School <?= icon('arrow') ?></a>
+        <a class="btn btn--ghost" href="<?= e(url('about.php#principal')) ?>">Principal's Message</a>
       </div>
     </div>
   </div>
@@ -254,7 +288,7 @@ $slides = [
     </div>
     <div data-reveal data-delay="1" style="display:flex;flex-direction:column;justify-content:center">
       <span class="eyebrow">From the Principal's Desk</span>
-      <h2>“We do not prepare children only for exams. We prepare them for the rest of their lives.”</h2>
+      <h2 style="font-size:clamp(1.35rem,2.2vw,1.85rem);line-height:1.25">“We do not prepare children only for exams. We prepare them for the rest of their lives.”</h2>
       <div class="rule"></div>
       <p class="lede mt-3">
         A school's worth is not measured by its buildings but by what its children become. At
