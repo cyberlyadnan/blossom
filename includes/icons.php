@@ -30,6 +30,8 @@ function icon(string $name, string $class = ''): string
         'bulb'      => '<path d="M9 18h6M10 22h4"/><path d="M12 2a6.5 6.5 0 0 0-4 11.6c.6.5 1 1.3 1 2.1V17h6v-1.3c0-.8.4-1.6 1-2.1A6.5 6.5 0 0 0 12 2Z"/>',
         'arrow'     => '<path d="M5 12h14M13 6l6 6-6 6"/>',
         'chevron'   => '<path d="m6 9 6 6 6-6"/>',
+        'menu'      => '<path d="M3.75 6.5h16.5M3.75 12h16.5M3.75 17.5h16.5"/>',
+        'close'     => '<path d="M18 6 6 18M6 6l12 12"/>',
         'download'  => '<path d="M12 3v13M7 12l5 5 5-5M4 21h16"/>',
         'file'      => '<path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h5M9 13h6M9 17h4"/>',
         'chat'      => '<path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12Z"/>',

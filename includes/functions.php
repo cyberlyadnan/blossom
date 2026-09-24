@@ -18,7 +18,9 @@ function url(string $path = ''): string
 /** Build an asset URL. */
 function asset(string $path): string
 {
-    return BASE_URL . '/assets/' . ltrim($path, '/');
+    $filePath = __DIR__ . '/../assets/' . ltrim($path, '/');
+    $ver = file_exists($filePath) ? '?v=' . filemtime($filePath) : '';
+    return BASE_URL . '/assets/' . ltrim($path, '/') . $ver;
 }
 
 /** True when $file is the page currently being viewed. */

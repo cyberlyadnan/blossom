@@ -92,7 +92,13 @@ $flash      = flash_get();
 
     <div class="header__cta">
       <a class="btn btn--gold btn--sm" href="<?= e(url('admissions.php#enquiry')) ?>">Apply for Admission</a>
-      <button class="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button class="burger" aria-label="Open menu" aria-expanded="false" type="button">
+        <svg class="burger__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <line class="burger__line burger__line--top" x1="4" y1="6" x2="20" y2="6" />
+          <line class="burger__line burger__line--mid" x1="4" y1="12" x2="20" y2="12" />
+          <line class="burger__line burger__line--bot" x1="4" y1="18" x2="20" y2="18" />
+        </svg>
+      </button>
     </div>
   </div>
 </header>
@@ -105,7 +111,7 @@ $flash      = flash_get();
       <?= crest(38) ?>
       <span class="brand__text"><span class="brand__name"><?= e(SCHOOL_SHORT) ?></span><span class="brand__sub"><?= e(SCHOOL_BOARD) ?></span></span>
     </a>
-    <button class="drawer__close" aria-label="Close menu">&times;</button>
+    <button class="drawer__close" aria-label="Close menu" type="button"><?= icon('close') ?></button>
   </div>
   <nav class="drawer__nav">
     <?php foreach ($NAV as $item): ?>
