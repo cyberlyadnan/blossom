@@ -75,7 +75,7 @@ $items = $stmt->fetchAll();
     <p style="color:var(--adm-text-muted); font-size:0.9rem;">Manage school announcements, event dates, and scrolling ticker notices.</p>
   </div>
   <button class="btn btn-gold" onclick="openModal('addNewsModal')">
-    <span>➕ Add News / Event</span>
+    <?= icon('plus') ?> <span>Add News / Event</span>
   </button>
 </div>
 
@@ -113,7 +113,7 @@ $items = $stmt->fetchAll();
               </td>
               <td>
                 <?php if ($item['is_ticker']): ?>
-                  <span class="badge badge-replied">📢 Shown on Ticker</span>
+                  <span class="badge badge-replied">Shown on Ticker</span>
                 <?php else: ?>
                   <span style="font-size:0.8rem; color:var(--adm-text-muted)">Off</span>
                 <?php endif; ?>
@@ -125,14 +125,14 @@ $items = $stmt->fetchAll();
               </td>
               <td style="text-align:right; white-space:nowrap;">
                 <button class="btn btn-outline btn-sm" onclick='editNews(<?= json_encode($item, JSON_HEX_APOS | JSON_HEX_QUOT) ?>)'>
-                  ✏️ Edit
+                  <?= icon('edit') ?> <span>Edit</span>
                 </button>
 
                 <form method="POST" action="" style="display:inline;" onsubmit="return confirm('Delete news item?')">
                   <?= csrf_field() ?>
                   <input type="hidden" name="action" value="delete">
                   <input type="hidden" name="id" value="<?= $item['id'] ?>">
-                  <button type="submit" class="btn btn-danger btn-sm">🗑️</button>
+                  <button type="submit" class="btn btn-icon-danger btn-sm" title="Delete"><?= icon('trash') ?></button>
                 </form>
               </td>
             </tr>
@@ -147,7 +147,7 @@ $items = $stmt->fetchAll();
 <div class="modal-overlay" id="addNewsModal">
   <div class="modal-container">
     <div class="modal-header">
-      <h3 class="modal-title">📣 Add News or Event</h3>
+      <h3 class="modal-title"><?= icon('file') ?> Add News or Event</h3>
       <button class="modal-close" onclick="closeModal('addNewsModal')">&times;</button>
     </div>
     <form method="POST" action="">

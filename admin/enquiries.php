@@ -110,7 +110,7 @@ $enquiries = $stmt->fetchAll();
     <?= csrf_field() ?>
     <input type="hidden" name="action" value="export_csv">
     <button type="submit" class="btn btn-outline">
-      <span>📥 Export All to CSV</span>
+      <?= icon('download') ?> <span>Export All to CSV</span>
     </button>
   </form>
 </div>
@@ -127,7 +127,7 @@ $enquiries = $stmt->fetchAll();
 
     <div style="display:flex; gap:0.5rem; flex:1; max-width:340px;">
       <input type="text" name="q" class="form-control" placeholder="Search by name, email, phone..." value="<?= e($searchQuery) ?>" style="padding:0.4rem 0.75rem;">
-      <button type="submit" class="btn btn-primary btn-sm">Search</button>
+      <button type="submit" class="btn btn-primary btn-sm"><?= icon('search') ?> Search</button>
       <?php if ($searchQuery !== ''): ?>
         <a href="<?= e(url('admin/enquiries.php')) ?>" class="btn btn-outline btn-sm">Clear</a>
       <?php endif; ?>
@@ -139,7 +139,7 @@ $enquiries = $stmt->fetchAll();
 <div class="card">
   <?php if (empty($enquiries)): ?>
     <div style="text-align:center; padding:3rem 1rem;">
-      <div style="font-size:2.5rem; margin-bottom:0.5rem;">📭</div>
+      <div style="margin-bottom:0.75rem; color:var(--adm-text-muted); display:flex; justify-content:center;"><?= icon('mail') ?></div>
       <h3>No enquiries found</h3>
       <p style="color:var(--adm-text-muted); font-size:0.9rem;" class="mt-1">
         <?= $searchQuery !== '' ? 'No results matched your search term.' : 'Submitted leads from admission and contact forms will show here.' ?>
@@ -170,8 +170,8 @@ $enquiries = $stmt->fetchAll();
               </td>
               <td>
                 <strong style="font-size:0.95rem;"><?= e($enq['parent_name']) ?></strong><br>
-                <span style="font-size:0.82rem;">📞 <a href="tel:<?= e($enq['phone']) ?>" style="color:inherit"><?= e($enq['phone']) ?></a></span><br>
-                <span style="font-size:0.82rem; color:var(--adm-text-muted)">✉️ <?= e($enq['email']) ?></span>
+                <span style="font-size:0.82rem;"><?= icon('phone') ?> <a href="tel:<?= e($enq['phone']) ?>" style="color:inherit"><?= e($enq['phone']) ?></a></span><br>
+                <span style="font-size:0.82rem; color:var(--adm-text-muted)"><?= icon('mail') ?> <?= e($enq['email']) ?></span>
               </td>
               <td style="font-size:0.88rem;">
                 <?php if (!empty($enq['student_name'])): ?>
@@ -188,14 +188,14 @@ $enquiries = $stmt->fetchAll();
               </td>
               <td style="text-align:right; white-space:nowrap;">
                 <button class="btn btn-gold btn-sm" onclick='viewEnquiry(<?= json_encode($enq, JSON_HEX_APOS | JSON_HEX_QUOT) ?>)'>
-                  👁️ View Details
+                  <?= icon('eye') ?> <span>View Details</span>
                 </button>
 
                 <form method="POST" action="" style="display:inline;" onsubmit="return confirm('Delete this enquiry?')">
                   <?= csrf_field() ?>
                   <input type="hidden" name="action" value="delete">
                   <input type="hidden" name="id" value="<?= $enq['id'] ?>">
-                  <button type="submit" class="btn btn-danger btn-sm" title="Delete">🗑️</button>
+                  <button type="submit" class="btn btn-icon-danger btn-sm" title="Delete"><?= icon('trash') ?></button>
                 </form>
               </td>
             </tr>
@@ -210,7 +210,7 @@ $enquiries = $stmt->fetchAll();
 <div class="modal-overlay" id="viewEnquiryModal">
   <div class="modal-container" style="max-width:650px;">
     <div class="modal-header">
-      <h3 class="modal-title">📩 Enquiry Details &amp; Status</h3>
+      <h3 class="modal-title"><?= icon('mail') ?> Enquiry Details &amp; Status</h3>
       <button class="modal-close" onclick="closeModal('viewEnquiryModal')">&times;</button>
     </div>
     <form method="POST" action="">

@@ -3,10 +3,8 @@
  |  BLOSSOM PUBLIC SCHOOL  —  ADMIN TESTIMONIALS MANAGEMENT
  * ===================================================================== */
 
-declare(strict_types=1);
-
-$admin_page_title = 'Parent Reviews & Testimonials';
-require_once __DIR__ . '/header.php';
+require_once __DIR__ . '/auth.php';
+require_admin_auth();
 
 $db = get_db();
 
@@ -60,6 +58,9 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
     }
 }
 
+$admin_page_title = 'Parent Reviews & Testimonials';
+require_once __DIR__ . '/header.php';
+
 $stmt = $db->query("SELECT * FROM `testimonials` ORDER BY `display_order` ASC, `id` DESC");
 $testimonials = $stmt->fetchAll();
 ?>
@@ -71,7 +72,7 @@ $testimonials = $stmt->fetchAll();
     <p style="color:var(--adm-text-muted); font-size:0.9rem;">Manage feedback and parent quotes displayed on the homepage.</p>
   </div>
   <button class="btn btn-gold" onclick="openModal('addTestModal')">
-    <span>➕ Add Testimonial</span>
+    <?= icon('plus') ?> <span>Add Testimonial</span>
   </button>
 </div>
 
@@ -96,14 +97,14 @@ $testimonials = $stmt->fetchAll();
 
         <div style="display:flex; gap:0.35rem;">
           <button class="btn btn-outline btn-sm" onclick='editTest(<?= json_encode($t, JSON_HEX_APOS | JSON_HEX_QUOT) ?>)'>
-            ✏️ Edit
+            <?= icon('edit') ?> <span>Edit</span>
           </button>
 
           <form method="POST" action="" style="display:inline;" onsubmit="return confirm('Delete review?')">
             <?= csrf_field() ?>
             <input type="hidden" name="action" value="delete">
             <input type="hidden" name="id" value="<?= $t['id'] ?>">
-            <button type="submit" class="btn btn-danger btn-sm">🗑️</button>
+            <button type="submit" class="btn btn-icon-danger btn-sm" title="Delete"><?= icon('trash') ?></button>
           </form>
         </div>
       </div>
@@ -115,7 +116,7 @@ $testimonials = $stmt->fetchAll();
 <div class="modal-overlay" id="addTestModal">
   <div class="modal-container">
     <div class="modal-header">
-      <h3 class="modal-title">💬 Add Parent Testimonial</h3>
+      <h3 class="modal-title"><?= icon('chat') ?> Add Parent Testimonial</h3>
       <button class="modal-close" onclick="closeModal('addTestModal')">&times;</button>
     </div>
     <form method="POST" action="">

@@ -547,14 +547,44 @@ body {
   color: white;
 }
 
-.btn-danger:hover {
-  background: #dc2626;
-}
-
 .btn-sm {
   padding: 0.4rem 0.75rem;
   font-size: 0.8rem;
   border-radius: 6px;
+}
+
+/* Global SVG Sizing */
+svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.btn svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2px;
+  flex-shrink: 0;
+}
+
+.btn-sm svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2px;
+}
+
+.btn-icon-danger {
+  background: #fef2f2;
+  color: #ef4444;
+  border-color: #fecaca;
+}
+
+.btn-icon-danger:hover {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
 }
 
 /* Forms */
@@ -775,7 +805,7 @@ figure.media img,
   overflow: hidden;
   transform: translateY(20px);
   transition: transform 0.3s ease;
-  max-height: 90vh;
+  max-height: calc(100vh - 3rem);
   display: flex;
   flex-direction: column;
 }
@@ -790,6 +820,7 @@ figure.media img,
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-shrink: 0;
 }
 
 .modal-title {
@@ -812,6 +843,8 @@ figure.media img,
 .modal-body {
   padding: 1.5rem;
   overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .modal-footer {
@@ -822,6 +855,7 @@ figure.media img,
   justify-content: flex-end;
   gap: 0.75rem;
   background: var(--adm-bg);
+  flex-shrink: 0;
 }
 
 /* Tabs */

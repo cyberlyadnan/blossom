@@ -41,7 +41,7 @@ try {
       <div class="stat-number"><?= number_format($totalGallery) ?></div>
       <div class="stat-label">Gallery Photos</div>
     </div>
-    <div class="stat-icon">🖼️</div>
+    <div class="stat-icon"><?= icon('image') ?></div>
   </div>
 
   <div class="stat-widget accent-rose">
@@ -49,7 +49,7 @@ try {
       <div class="stat-number"><?= number_format($unreadEnquiries) ?></div>
       <div class="stat-label">Unread Enquiries</div>
     </div>
-    <div class="stat-icon">📩</div>
+    <div class="stat-icon"><?= icon('mail') ?></div>
   </div>
 
   <div class="stat-widget accent-emerald">
@@ -57,7 +57,7 @@ try {
       <div class="stat-number"><?= number_format($totalFaculty) ?></div>
       <div class="stat-label">Faculty Staff</div>
     </div>
-    <div class="stat-icon">👨‍🏫</div>
+    <div class="stat-icon"><?= icon('users') ?></div>
   </div>
 
   <div class="stat-widget accent-indigo">
@@ -65,30 +65,30 @@ try {
       <div class="stat-number"><?= number_format($totalEnquiries) ?></div>
       <div class="stat-label">Total Leads</div>
     </div>
-    <div class="stat-icon">📋</div>
+    <div class="stat-icon"><?= icon('file') ?></div>
   </div>
 </div>
 
 <!-- Quick Shortcuts -->
 <div class="card">
   <div class="card-header">
-    <h2 class="card-title">⚡ Quick Management Shortcuts</h2>
+    <h2 class="card-title"><?= icon('sparkle') ?> Quick Management Shortcuts</h2>
   </div>
   <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
     <a href="<?= e(url('admin/gallery.php?action=add')) ?>" class="btn btn-gold">
-      <span>🖼️ Add Gallery Photo</span>
+      <?= icon('plus') ?> <span>Add Gallery Photo</span>
     </a>
     <a href="<?= e(url('admin/enquiries.php')) ?>" class="btn btn-primary">
-      <span>📩 View Enquiries Inbox (<?= $unreadEnquiries ?> unread)</span>
+      <?= icon('mail') ?> <span>View Enquiries Inbox (<?= $unreadEnquiries ?> unread)</span>
     </a>
     <a href="<?= e(url('admin/settings.php')) ?>" class="btn btn-outline">
-      <span>⚙️ Update Contact &amp; Phone Numbers</span>
+      <?= icon('settings') ?> <span>Update Contact &amp; Phone Numbers</span>
     </a>
     <a href="<?= e(url('admin/faculty.php?action=add')) ?>" class="btn btn-outline">
-      <span>👨‍🏫 Add Faculty Member</span>
+      <?= icon('users') ?> <span>Add Faculty Member</span>
     </a>
     <a href="<?= e(url('admin/news.php?action=add')) ?>" class="btn btn-outline">
-      <span>📣 Post Announcement</span>
+      <?= icon('file') ?> <span>Post Announcement</span>
     </a>
   </div>
 </div>
@@ -99,7 +99,7 @@ try {
   <!-- Recent Enquiries -->
   <div class="card">
     <div class="card-header">
-      <h2 class="card-title">📩 Recent Enquiries</h2>
+      <h2 class="card-title"><?= icon('mail') ?> Recent Enquiries</h2>
       <a href="<?= e(url('admin/enquiries.php')) ?>" class="btn btn-outline btn-sm">View All →</a>
     </div>
 
@@ -145,7 +145,7 @@ try {
   <!-- Recent Gallery Uploads -->
   <div class="card">
     <div class="card-header">
-      <h2 class="card-title">🖼️ Recent Gallery Uploads</h2>
+      <h2 class="card-title"><?= icon('image') ?> Recent Gallery Uploads</h2>
       <a href="<?= e(url('admin/gallery.php')) ?>" class="btn btn-outline btn-sm">Manage Gallery →</a>
     </div>
 
@@ -173,7 +173,7 @@ try {
 <!-- System Status Card -->
 <div class="card mt-4">
   <div class="card-header">
-    <h2 class="card-title">ℹ️ System Configuration</h2>
+    <h2 class="card-title"><?= icon('settings') ?> System Configuration</h2>
   </div>
   <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; font-size:0.88rem;">
     <div><strong>School Name:</strong> <?= e(SCHOOL_NAME) ?></div>

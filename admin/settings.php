@@ -77,10 +77,10 @@ require_once __DIR__ . '/header.php';
   </div>
 
   <div class="nav-tabs">
-    <button class="tab-btn active" data-tab="tab-identity">🏫 School Identity</button>
-    <button class="tab-btn" data-tab="tab-contact">📞 Contact &amp; Address</button>
-    <button class="tab-btn" data-tab="tab-social">🌐 Social Links</button>
-    <button class="tab-btn" data-tab="tab-stats">📊 Headline Numbers</button>
+    <button class="tab-btn active" data-tab="tab-identity"><?= icon('book') ?> School Identity</button>
+    <button class="tab-btn" data-tab="tab-contact"><?= icon('phone') ?> Contact &amp; Address</button>
+    <button class="tab-btn" data-tab="tab-social"><?= icon('globe') ?> Social Links</button>
+    <button class="tab-btn" data-tab="tab-stats"><?= icon('trophy') ?> Headline Numbers</button>
   </div>
 
   <form method="POST" action="">
@@ -89,7 +89,7 @@ require_once __DIR__ . '/header.php';
     <!-- TAB 1: School Identity -->
     <div class="tab-pane card" id="tab-identity">
       <div class="card-header">
-        <h3 class="card-title">🏫 School Branding &amp; Identity</h3>
+        <h3 class="card-title"><?= icon('book') ?> School Branding &amp; Identity</h3>
       </div>
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1.25rem;">
         <div class="form-group">

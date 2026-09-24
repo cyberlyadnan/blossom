@@ -99,7 +99,7 @@ $staffList = $stmt->fetchAll();
     <p style="color:var(--adm-text-muted); font-size:0.9rem;">Manage teachers, leadership team, coordinators and counsellors.</p>
   </div>
   <button class="btn btn-gold" onclick="openModal('addFacultyModal')">
-    <span>➕ Add New Faculty</span>
+    <?= icon('plus') ?> <span>Add New Faculty</span>
   </button>
 </div>
 
@@ -118,7 +118,7 @@ $staffList = $stmt->fetchAll();
       </div>
 
       <p style="font-size:0.85rem; color:var(--adm-text-muted); flex:1; margin-bottom:1rem;">
-        🎓 <?= e($st['qualification']) ?>
+        <?= e($st['qualification']) ?>
       </p>
 
       <div style="display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--adm-border); padding-top:0.75rem;">
@@ -128,14 +128,14 @@ $staffList = $stmt->fetchAll();
 
         <div style="display:flex; gap:0.35rem;">
           <button class="btn btn-outline btn-sm" onclick='editFaculty(<?= json_encode($st, JSON_HEX_APOS | JSON_HEX_QUOT) ?>)'>
-            ✏️ Edit
+            <?= icon('edit') ?> <span>Edit</span>
           </button>
           
           <form method="POST" action="" style="display:inline;" onsubmit="return confirm('Remove teacher?')">
             <?= csrf_field() ?>
             <input type="hidden" name="action" value="delete">
             <input type="hidden" name="id" value="<?= $st['id'] ?>">
-            <button type="submit" class="btn btn-danger btn-sm" title="Delete">🗑️</button>
+            <button type="submit" class="btn btn-icon-danger btn-sm" title="Delete"><?= icon('trash') ?></button>
           </form>
         </div>
       </div>
@@ -147,7 +147,7 @@ $staffList = $stmt->fetchAll();
 <div class="modal-overlay" id="addFacultyModal">
   <div class="modal-container">
     <div class="modal-header">
-      <h3 class="modal-title">👨‍🏫 Add New Faculty Member</h3>
+      <h3 class="modal-title"><?= icon('users') ?> Add New Faculty Member</h3>
       <button class="modal-close" onclick="closeModal('addFacultyModal')">&times;</button>
     </div>
     <form method="POST" action="" enctype="multipart/form-data">
@@ -202,7 +202,7 @@ $staffList = $stmt->fetchAll();
 <div class="modal-overlay" id="editFacultyModal">
   <div class="modal-container">
     <div class="modal-header">
-      <h3 class="modal-title">✏️ Edit Faculty Member</h3>
+      <h3 class="modal-title"><?= icon('edit') ?> Edit Faculty Member</h3>
       <button class="modal-close" onclick="closeModal('editFacultyModal')">&times;</button>
     </div>
     <form method="POST" action="" enctype="multipart/form-data">

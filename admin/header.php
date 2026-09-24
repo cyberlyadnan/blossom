@@ -124,7 +124,7 @@ try {
 
       <div class="topbar-right">
         <a href="<?= e(url('index.php')) ?>" target="_blank" class="btn btn-outline btn-sm" title="View Website">
-          <span>🌐 Visit Website</span>
+          <?= icon('globe') ?> <span>Visit Website</span>
         </a>
         <a href="<?= e(url('admin/profile.php')) ?>" class="btn-icon" title="My Profile">
           <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>

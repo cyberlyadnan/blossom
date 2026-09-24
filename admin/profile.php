@@ -3,12 +3,11 @@
  |  BLOSSOM PUBLIC SCHOOL  —  ADMIN ACCOUNT PROFILE & SECURITY
  * ===================================================================== */
 
-declare(strict_types=1);
-
-$admin_page_title = 'Admin Account & Security';
-require_once __DIR__ . '/header.php';
+require_once __DIR__ . '/auth.php';
+require_admin_auth();
 
 $db = get_db();
+$admin = get_logged_admin();
 $adminId = (int) $admin['id'];
 
 // Handle Profile & Password Updates
@@ -92,6 +91,9 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
         exit;
     }
 }
+
+$admin_page_title = 'Admin Account & Security';
+require_once __DIR__ . '/header.php';
 ?>
 
 <div style="max-width:800px; margin:0 auto;">

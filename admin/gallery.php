@@ -149,13 +149,13 @@ require_once __DIR__ . '/header.php';
 ?>
 
 <!-- Header Actions -->
-<div style="display:flex; justify-space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
   <div>
     <h2 style="font-size:1.4rem; font-weight:700; color:var(--adm-navy);">Manage Gallery Photos</h2>
     <p style="color:var(--adm-text-muted); font-size:0.9rem;">Add, edit captions, upload photos, change categories or toggle visibility.</p>
   </div>
   <button class="btn btn-gold" onclick="openModal('addPhotoModal')">
-    <span>➕ Add New Photo</span>
+    <?= icon('plus') ?> <span>Add New Photo</span>
   </button>
 </div>
 
@@ -176,7 +176,7 @@ require_once __DIR__ . '/header.php';
 <!-- Photos Grid -->
 <?php if (empty($photos)): ?>
   <div class="card" style="text-align:center; padding:3rem;">
-    <div style="font-size:2.5rem; margin-bottom:0.5rem;">🖼️</div>
+    <div style="margin-bottom:0.75rem; color:var(--adm-text-muted); display:flex; justify-content:center;"><?= icon('image') ?></div>
     <h3>No photos found in this category.</h3>
     <p class="mt-2" style="color:var(--adm-text-muted)">Click "Add New Photo" above to upload or add images.</p>
   </div>
@@ -200,7 +200,7 @@ require_once __DIR__ . '/header.php';
 
           <div class="adm-gallery-footer">
             <button class="btn btn-outline btn-sm" onclick='editPhoto(<?= json_encode($ph, JSON_HEX_APOS | JSON_HEX_QUOT) ?>)'>
-              ✏️ Edit
+              <?= icon('edit') ?> <span>Edit</span>
             </button>
             
             <form method="POST" action="" class="toggle-form" style="display:inline;" onsubmit="return togglePhotoAjax(event, <?= $ph['id'] ?>)">
@@ -209,7 +209,7 @@ require_once __DIR__ . '/header.php';
               <input type="hidden" name="id" value="<?= $ph['id'] ?>">
               <input type="hidden" name="current_cat" value="<?= e($filterCat) ?>">
               <button type="submit" class="btn btn-outline btn-sm toggle-btn" id="toggleBtn-<?= $ph['id'] ?>" title="Toggle visibility">
-                <?= $ph['is_active'] ? '👁️ Hide' : '✨ Show' ?>
+                <?= $ph['is_active'] ? icon('eye-off') . ' <span>Hide</span>' : icon('eye') . ' <span>Show</span>' ?>
               </button>
             </form>
 
@@ -218,7 +218,7 @@ require_once __DIR__ . '/header.php';
               <input type="hidden" name="action" value="delete">
               <input type="hidden" name="id" value="<?= $ph['id'] ?>">
               <input type="hidden" name="current_cat" value="<?= e($filterCat) ?>">
-              <button type="submit" class="btn btn-danger btn-sm" title="Delete photo">🗑️</button>
+              <button type="submit" class="btn btn-icon-danger btn-sm" title="Delete photo"><?= icon('trash') ?></button>
             </form>
           </div>
         </div>
@@ -232,7 +232,7 @@ require_once __DIR__ . '/header.php';
 <div class="modal-overlay" id="addPhotoModal">
   <div class="modal-container">
     <div class="modal-header">
-      <h3 class="modal-title">🖼️ Add New Gallery Photo</h3>
+      <h3 class="modal-title"><?= icon('image') ?> Add New Gallery Photo</h3>
       <button class="modal-close" onclick="closeModal('addPhotoModal')">&times;</button>
     </div>
     <form method="POST" action="" enctype="multipart/form-data">
