@@ -84,6 +84,25 @@ if ($fh = @fopen(ENQUIRY_LOG_FILE, 'a')) {
     fclose($fh);
 }
 
+/* Store in MySQL Database */
+try {
+    $db = get_db();
+    $stmt = $db->prepare("INSERT INTO `enquiries` (`form_type`, `parent_name`, `email`, `phone`, `student_name`, `grade`, `subject`, `message`, `ip_address`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([
+        $_POST['form'] ?? 'contact',
+        $in['parent'],
+        $in['email'],
+        $in['phone'],
+        $in['student'] !== '' ? $in['student'] : null,
+        $in['grade'] !== '' ? $in['grade'] : null,
+        $in['subject'] !== '' ? $in['subject'] : null,
+        $in['message'],
+        $_SERVER['REMOTE_ADDR'] ?? ''
+    ]);
+} catch (Exception $e) {
+    // Silent fail if DB issue, CSV saved above
+}
+
 /* 5. Email (only when explicitly enabled in config) -------------------- */
 if (ENQUIRY_SEND_MAIL) {
     $subject = ($_POST['form'] === 'admission' ? 'Admission enquiry' : 'Website enquiry')

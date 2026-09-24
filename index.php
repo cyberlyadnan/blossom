@@ -83,14 +83,23 @@ $slides = [
   </div>
   <div class="ticker__viewport">
     <div class="ticker__track">
-      <?php $notices = [
-          'Admissions open for Nursery to Class VIII — limited seats per section',
-          'Annual Day rehearsals begin this month — parents invited',
-          'Inter-house Science Quiz winners announced',
-          'Parent–Teacher Meeting scheduled for the last Saturday of the month',
-      ];
+      <?php 
+      try {
+          $db = get_db();
+          $tickerItems = $db->query("SELECT `title` FROM `news_events` WHERE `is_ticker` = 1 AND `is_published` = 1 ORDER BY `display_order` ASC, `id` DESC")->fetchAll(PDO::FETCH_COLUMN);
+      } catch (Exception $e) {
+          $tickerItems = [];
+      }
+      if (empty($tickerItems)) {
+          $tickerItems = [
+              'Admissions open for Nursery to Class VIII — limited seats per section',
+              'Annual Day rehearsals begin this month — parents invited',
+              'Inter-house Science Quiz winners announced',
+              'Parent–Teacher Meeting scheduled for the last Saturday of the month',
+          ];
+      }
       foreach ([1, 2] as $pass) {
-          foreach ($notices as $n) echo '<span class="ticker__item">' . e($n) . '</span>';
+          foreach ($tickerItems as $n) echo '<span class="ticker__item">' . e($n) . '</span>';
       } ?>
     </div>
   </div>
@@ -321,18 +330,26 @@ $slides = [
 
     <div class="grid g-3">
       <?php
-      $quotes = [
-          ['My daughter went from hiding behind me at the gate to leading the assembly. The teachers noticed her before I did.', 'Parent, Class III', 'A'],
-          ['What convinced us was the follow-up. A teacher called about one weak topic in maths — nobody had to chase them.', 'Parent, Class VI', 'S'],
-          ['Clean campus, punctual buses, and a class teacher who actually answers. As a working parent, that is everything.', 'Parent, Class I', 'R'],
-      ];
-      foreach ($quotes as $i => $q): ?>
+      try {
+          $db = get_db();
+          $quotes = $db->query("SELECT `quote`, `author_title`, `author_name` FROM `testimonials` WHERE `is_active` = 1 ORDER BY `display_order` ASC, `id` DESC LIMIT 3")->fetchAll();
+      } catch (Exception $e) {
+          $quotes = [];
+      }
+      if (empty($quotes)) {
+          $quotes = [
+              ['quote' => 'My daughter went from hiding behind me at the gate to leading the assembly.', 'author_title' => 'Parent, Class III', 'author_name' => 'Mrs. Anita Sharma'],
+          ];
+      }
+      foreach ($quotes as $i => $q): 
+          $initial = mb_substr($q['author_name'] ?? 'P', 0, 1);
+      ?>
         <figure class="quote" data-reveal data-delay="<?= $i ?>">
           <div class="stars"><?= str_repeat(icon('star'), 5) ?></div>
-          <p><?= e($q[0]) ?></p>
+          <p><?= e($q['quote']) ?></p>
           <figcaption class="quote__who">
-            <span class="quote__ava"><?= e($q[2]) ?></span>
-            <span><b>Verified Parent</b><span><?= e($q[1]) ?></span></span>
+            <span class="quote__ava"><?= e($initial) ?></span>
+            <span><b><?= e($q['author_name']) ?></b><span><?= e($q['author_title']) ?></span></span>
           </figcaption>
         </figure>
       <?php endforeach; ?>
@@ -348,19 +365,24 @@ $slides = [
       <h2>What's happening at school</h2>
       <div class="rule mb-3"></div>
       <?php
-      $news = [
-          ['12', 'Aug', 'Announcement', 'Admissions open for the new session', 'Application forms for Nursery to Class VIII are now available at the school office and online.'],
-          ['05', 'Aug', 'Event', 'Independence Day preparations begin', 'House-wise march past, patriotic songs and a special assembly are being rehearsed.'],
-          ['28', 'Jul', 'Achievement', 'Inter-school quiz — first position', 'Our Middle Wing team brought home the trophy from the district-level general knowledge quiz.'],
-          ['20', 'Jul', 'Notice', 'Parent–Teacher Meeting', 'Term-one progress will be shared class-wise. Attendance of at least one parent is requested.'],
-      ];
+      try {
+          $db = get_db();
+          $news = $db->query("SELECT `event_day`, `event_month`, `category`, `title`, `content` FROM `news_events` WHERE `is_published` = 1 ORDER BY `display_order` ASC, `id` DESC LIMIT 4")->fetchAll();
+      } catch (Exception $e) {
+          $news = [];
+      }
+      if (empty($news)) {
+          $news = [
+              ['event_day' => '12', 'event_month' => 'Aug', 'category' => 'Announcement', 'title' => 'Admissions open for the new session', 'content' => 'Application forms for Nursery to Class VIII are now available at the school office and online.'],
+          ];
+      }
       foreach ($news as $n): ?>
         <article class="news">
-          <div class="news__date"><b><?= e($n[0]) ?></b><span><?= e($n[1]) ?></span></div>
+          <div class="news__date"><b><?= e($n['event_day'] ?: '01') ?></b><span><?= e($n['event_month'] ?: 'Jan') ?></span></div>
           <div>
-            <span class="news__tag"><?= e($n[2]) ?></span>
-            <h4><?= e($n[3]) ?></h4>
-            <p><?= e($n[4]) ?></p>
+            <span class="news__tag"><?= e($n['category']) ?></span>
+            <h4><?= e($n['title']) ?></h4>
+            <p><?= e($n['content']) ?></p>
           </div>
         </article>
       <?php endforeach; ?>

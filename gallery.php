@@ -18,47 +18,23 @@ $cats = [
     'activities'   => 'Activities & Environment',
 ];
 
-$photos = [
-    ['principal.jpg',                'Principal\'s Office — Seated at Desk',             'achievements'],
-    ['achievers.jpg',                'Principal Felicitating Student Achievers',         'achievements'],
-    ['gallery/campus-courtyard.jpg', 'Main Building Atrium & Courtyard',               'campus'],
-    ['gallery/campus-balconies.jpg', 'Multi-Level Campus Balconies with Floral Decor',  'campus'],
-    ['gallery/computer-lab-hall.jpg','Classroom Corridor & Computer Lab Entrance',     'classroom'],
-    ['gallery/campus-corridor.jpg',  'School Corridor & Reception Area',                'campus'],
-    ['gallery/balcony-walkway.jpg',  'Bougainvillea Balcony Walkway',                   'campus'],
-    ['gallery/rooftop-garden.jpg',   'Rooftop Green Potted Cypress Garden',             'activities'],
-    ['gallery/floral-terrace.jpg',   'Blooming Pink Bougainvillea Terrace',             'activities'],
-    ['gallery/school-event-01.jpg',  'Annual Day Cultural Performance',                 'events'],
-    ['gallery/school-event-02.jpg',  'Independence Day Celebration',                    'events'],
-    ['gallery/school-event-03.jpg',  'Inter-House Quiz Competition',                    'events'],
-    ['gallery/school-event-04.jpg',  'Science Exhibition Display',                      'events'],
-    ['gallery/school-event-05.jpg',  'Republic Day March Past',                         'events'],
-    ['gallery/school-event-06.jpg',  'Teachers Day Celebration',                        'events'],
-    ['gallery/school-event-07.jpg',  'Children Day Funfair & Games',                    'events'],
-    ['gallery/school-event-08.jpg',  'Annual Sports Meet',                              'events'],
-    ['gallery/school-event-09.jpg',  'Prize Distribution Ceremony',                     'events'],
-    ['gallery/school-event-10.jpg',  'Art & Craft Exhibition',                          'events'],
-    ['gallery/school-event-11.jpg',  'Storytelling & Drama Session',                    'events'],
-    ['gallery/school-event-12.jpg',  'Inter-School Debate Championship',                'events'],
-    ['gallery/school-event-13.jpg',  'Music & Choir Performance',                       'events'],
-    ['gallery/school-event-14.jpg',  'School Assembly Gathering',                       'events'],
-    ['gallery/school-event-15.jpg',  'Plantation & Environment Drive',                  'events'],
-    ['gallery/school-event-16.jpg',  'Yoga & Physical Fitness Session',                 'events'],
-    ['gallery/school-event-17.jpg',  'Parent-Teacher Interaction Day',                  'events'],
-    ['gallery/school-event-18.jpg',  'Robotics & Science Activity',                     'events'],
-    ['gallery/school-event-19.jpg',  'Classroom Group Activity',                        'classroom'],
-    ['gallery/school-event-20.jpg',  'Reading Hour in Library',                         'classroom'],
-    ['gallery/school-event-21.jpg',  'Smart Board Interactive Lesson',                  'classroom'],
-    ['gallery/school-event-22.jpg',  'Science Lab Practical Session',                   'classroom'],
-    ['gallery/school-event-23.jpg',  'Computer Lab Coding Activity',                    'classroom'],
-    ['gallery/school-event-24.jpg',  'Junior Wing Play & Learn',                        'classroom'],
-    ['gallery/school-event-25.jpg',  'Pre-Primary Fun Learning Activity',               'classroom'],
-    ['gallery/school-event-26.jpg',  'Campus Green Corner',                             'activities'],
-    ['gallery/school-event-27.jpg',  'Outdoor Games & Athletics',                       'activities'],
-    ['gallery/school-event-28.jpg',  'Student Achievement Felicitations',               'achievements'],
-    ['gallery/school-event-29.jpg',  'Excellence Award Presentation',                   'achievements'],
-    ['gallery/school-event-30.jpg',  'School Festivities & Celebrations',               'events'],
-];
+try {
+    $db = get_db();
+    $stmt = $db->query("SELECT `image_path`, `title`, `category` FROM `gallery` WHERE `is_active` = 1 ORDER BY `display_order` ASC, `id` DESC");
+    $dbPhotos = $stmt->fetchAll();
+    $photos = [];
+    foreach ($dbPhotos as $dp) {
+        $photos[] = [$dp['image_path'], $dp['title'], $dp['category']];
+    }
+} catch (Exception $e) {
+    $photos = [];
+}
+if (empty($photos)) {
+    $photos = [
+        ['principal.jpg', 'Principal\'s Office — Seated at Desk', 'achievements'],
+        ['achievers.jpg', 'Principal Felicitating Student Achievers', 'achievements'],
+    ];
+}
 ?>
 
 <section class="page-hero">
