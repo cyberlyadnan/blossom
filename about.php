@@ -8,7 +8,7 @@ require_once __DIR__ . '/includes/header.php';
 <section class="page-hero">
   <div class="wrap page-hero__in">
     <nav class="crumbs" aria-label="Breadcrumb">
-      <a href="<?= e(url('index.php')) ?>">Home</a><span>/</span>About
+      <a href="<?= e(url('index')) ?>">Home</a><span>/</span>About
     </nav>
     <h1>About <?= e(SCHOOL_NAME) ?></h1>
     <p>A neighbourhood school in <?= e(SCHOOL_CITY) ?> with an unfashionable belief: that attention, not scale, is what makes a child flourish.</p>
@@ -163,8 +163,8 @@ require_once __DIR__ . '/includes/header.php';
           <p>Our faculty is the reason parents stay. Read about the team teaching your child.</p>
         </div>
         <div class="btn-row">
-          <a class="btn btn--gold" href="<?= e(url('faculty.php')) ?>">Meet Our Faculty <?= icon('arrow') ?></a>
-          <a class="btn btn--light" href="<?= e(url('admissions.php#enquiry')) ?>">Apply for Admission</a>
+          <a class="btn btn--gold" href="<?= e(url('faculty')) ?>">Meet Our Faculty <?= icon('arrow') ?></a>
+          <a class="btn btn--light" href="<?= e(url('admissions#enquiry')) ?>">Apply for Admission</a>
         </div>
       </div>
     </div>

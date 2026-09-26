@@ -7,7 +7,7 @@ require_once __DIR__ . '/includes/header.php';
 
 <section class="page-hero">
   <div class="wrap page-hero__in">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="<?= e(url('index.php')) ?>">Home</a><span>/</span>Academics</nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="<?= e(url('index')) ?>">Home</a><span>/</span>Academics</nav>
     <h1>Academics</h1>
     <p>A <?= e(SCHOOL_BOARD) ?> programme from Nursery to Class VIII, taught so that children understand — not merely remember.</p>
   </div>
@@ -174,7 +174,7 @@ require_once __DIR__ . '/includes/header.php';
             <span class="tag">Eco Club</span><span class="tag">Quiz Club</span>
             <span class="tag">Sports</span><span class="tag">Public Speaking</span>
           </div>
-          <a class="btn btn--ghost mt-3" href="<?= e(url('facilities.php')) ?>">See the facilities <?= icon('arrow') ?></a>
+          <a class="btn btn--ghost mt-3" href="<?= e(url('facilities')) ?>">See the facilities <?= icon('arrow') ?></a>
         </div>
       </div>
     </div>
@@ -190,8 +190,8 @@ require_once __DIR__ . '/includes/header.php';
           <p>We welcome parents into working classrooms — not staged demonstrations.</p>
         </div>
         <div class="btn-row">
-          <a class="btn btn--gold" href="<?= e(url('admissions.php#enquiry')) ?>">Book a Visit <?= icon('arrow') ?></a>
-          <a class="btn btn--light" href="<?= e(url('contact.php')) ?>">Contact the Office</a>
+          <a class="btn btn--gold" href="<?= e(url('admissions#enquiry')) ?>">Book a Visit <?= icon('arrow') ?></a>
+          <a class="btn btn--light" href="<?= e(url('contact')) ?>">Contact the Office</a>
         </div>
       </div>
     </div>

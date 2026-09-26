@@ -64,12 +64,8 @@ $flash      = flash_get();
 <!-- ============ HEADER ============ -->
 <header class="site-header">
   <div class="wrap header__in">
-    <a class="brand" href="<?= e(url('index.php')) ?>">
-      <?= crest(46) ?>
-      <span class="brand__text">
-        <span class="brand__name"><?= e(SCHOOL_NAME) ?></span>
-        <span class="brand__sub"><?= e(SCHOOL_BOARD) ?> · <?= e(SCHOOL_CITY) ?></span>
-      </span>
+    <a class="brand" href="<?= e(url('index')) ?>" aria-label="<?= e(SCHOOL_NAME) ?>">
+      <?= crest(52) ?>
     </a>
 
     <nav class="nav" aria-label="Primary">
@@ -91,7 +87,7 @@ $flash      = flash_get();
     </nav>
 
     <div class="header__cta">
-      <a class="btn btn--gold btn--sm" href="<?= e(url('admissions.php#enquiry')) ?>">Apply for Admission</a>
+      <a class="btn btn--gold btn--sm" href="<?= e(url('admissions#enquiry')) ?>">Apply for Admission</a>
       <button class="burger" aria-label="Open menu" aria-expanded="false" type="button">
         <svg class="burger__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" focusable="false">
           <line class="burger__line burger__line--top" x1="4" y1="6" x2="20" y2="6" />
@@ -107,9 +103,8 @@ $flash      = flash_get();
 <div class="scrim"></div>
 <aside class="drawer" aria-label="Mobile menu">
   <div class="drawer__top">
-    <a class="brand" href="<?= e(url('index.php')) ?>">
-      <?= crest(38) ?>
-      <span class="brand__text"><span class="brand__name"><?= e(SCHOOL_SHORT) ?></span><span class="brand__sub"><?= e(SCHOOL_BOARD) ?></span></span>
+    <a class="brand" href="<?= e(url('index')) ?>" aria-label="<?= e(SCHOOL_NAME) ?>">
+      <?= crest(42) ?>
     </a>
     <button class="drawer__close" aria-label="Close menu" type="button"><?= icon('close') ?></button>
   </div>
@@ -126,7 +121,7 @@ $flash      = flash_get();
     <?php endforeach; ?>
   </nav>
   <div class="drawer__foot">
-    <a class="btn btn--gold btn--block" href="<?= e(url('admissions.php#enquiry')) ?>">Apply for Admission</a>
+    <a class="btn btn--gold btn--block" href="<?= e(url('admissions#enquiry')) ?>">Apply for Admission</a>
     <p style="margin-top:14px;font-size:.85rem"><?= icon('phone') ?> <a href="tel:<?= e(str_replace(' ', '', SCHOOL_PHONE)) ?>"><?= e(SCHOOL_PHONE) ?></a></p>
   </div>
 </aside>

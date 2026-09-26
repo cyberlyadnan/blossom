@@ -23,22 +23,22 @@
       <div>
         <h4>Explore</h4>
         <ul class="footer__links">
-          <li><a href="<?= e(url('about.php')) ?>">About the School</a></li>
-          <li><a href="<?= e(url('academics.php')) ?>">Academics</a></li>
-          <li><a href="<?= e(url('facilities.php')) ?>">Facilities</a></li>
-          <li><a href="<?= e(url('faculty.php')) ?>">Our Faculty</a></li>
-          <li><a href="<?= e(url('gallery.php')) ?>">Gallery</a></li>
+          <li><a href="<?= e(url('about')) ?>">About the School</a></li>
+          <li><a href="<?= e(url('academics')) ?>">Academics</a></li>
+          <li><a href="<?= e(url('facilities')) ?>">Facilities</a></li>
+          <li><a href="<?= e(url('faculty')) ?>">Our Faculty</a></li>
+          <li><a href="<?= e(url('gallery')) ?>">Gallery</a></li>
         </ul>
       </div>
 
       <div>
         <h4>Admissions</h4>
         <ul class="footer__links">
-          <li><a href="<?= e(url('admissions.php')) ?>">Admission Process</a></li>
-          <li><a href="<?= e(url('admissions.php#criteria')) ?>">Age Criteria</a></li>
-          <li><a href="<?= e(url('admissions.php#documents')) ?>">Documents Required</a></li>
-          <li><a href="<?= e(url('admissions.php#faq')) ?>">Admission FAQs</a></li>
-          <li><a href="<?= e(url('contact.php')) ?>">Visit the Campus</a></li>
+          <li><a href="<?= e(url('admissions')) ?>">Admission Process</a></li>
+          <li><a href="<?= e(url('admissions#criteria')) ?>">Age Criteria</a></li>
+          <li><a href="<?= e(url('admissions#documents')) ?>">Documents Required</a></li>
+          <li><a href="<?= e(url('admissions#faq')) ?>">Admission FAQs</a></li>
+          <li><a href="<?= e(url('contact')) ?>">Visit the Campus</a></li>
         </ul>
       </div>
 
@@ -56,7 +56,8 @@
 
     <div class="footer__bar">
       <p>&copy; <span data-year><?= date('Y') ?></span> <?= e(SCHOOL_NAME) ?>, <?= e(SCHOOL_CITY) ?>. All rights reserved.</p>
-      <p><a href="<?= e(url('contact.php')) ?>">Contact</a> &nbsp;·&nbsp; <a href="<?= e(url('admissions.php')) ?>">Admissions</a> &nbsp;·&nbsp; Affiliation No. <?= e(SCHOOL_AFFIL_NO) ?></p>
+      <p>Developed by <a href="https://growthtechnos.com" target="_blank" rel="noopener" style="color:var(--gold-400);font-weight:600;">Growth Technos</a></p>
+      <p><a href="<?= e(url('contact')) ?>">Contact</a> &nbsp;·&nbsp; <a href="<?= e(url('admissions')) ?>">Admissions</a> &nbsp;·&nbsp; Affiliation No. <?= e(SCHOOL_AFFIL_NO) ?></p>
     </div>
   </div>
 </footer>

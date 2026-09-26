@@ -7,7 +7,7 @@ require_once __DIR__ . '/includes/header.php';
 
 <section class="page-hero">
   <div class="wrap page-hero__in">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="<?= e(url('index.php')) ?>">Home</a><span>/</span>Contact</nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="<?= e(url('index')) ?>">Home</a><span>/</span>Contact</nav>
     <h1>Contact Us</h1>
     <p>Call, write, or simply walk in during office hours. Someone from the school will always speak with you.</p>
   </div>
@@ -50,7 +50,7 @@ require_once __DIR__ . '/includes/header.php';
       <div class="info-panel mt-3">
         <h3>Quick answers</h3>
         <ul class="ilist mt-3">
-          <li><span class="ico"><?= icon('book') ?></span><div><h4>Admissions</h4><p>Seat availability, forms and fee structure — <a href="<?= e(url('admissions.php')) ?>">see the admissions page</a>.</p></div></li>
+          <li><span class="ico"><?= icon('book') ?></span><div><h4>Admissions</h4><p>Seat availability, forms and fee structure — <a href="<?= e(url('admissions')) ?>">see the admissions page</a>.</p></div></li>
           <li><span class="ico"><?= icon('bus') ?></span><div><h4>Transport</h4><p>Tell us your locality and we will confirm the nearest route and stop.</p></div></li>
           <li><span class="ico"><?= icon('users') ?></span><div><h4>Existing parents</h4><p>For anything class-specific, your class teacher is the fastest route.</p></div></li>
           <li><span class="ico"><?= icon('whatsapp') ?></span><div><h4>WhatsApp</h4><p><a href="<?= e(SOCIAL_WHATSAPP) ?>" target="_blank" rel="noopener">Message the school office</a></p></div></li>
@@ -70,10 +70,10 @@ require_once __DIR__ . '/includes/header.php';
         <h3>Enquiry Form</h3>
         <p class="field__hint mb-2">Fields marked <span style="color:var(--err)">*</span> are required.</p>
 
-        <form class="form" method="post" action="<?= e(url('contact.php')) ?>#enquiry" novalidate>
+        <form class="form" method="post" action="<?= e(url('contact')) ?>#enquiry" novalidate>
           <?= csrf_field() ?>
           <input type="hidden" name="form" value="contact">
-          <input type="hidden" name="_redirect" value="contact.php">
+          <input type="hidden" name="_redirect" value="contact">
           <div class="hp"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
 
           <div class="form__row">

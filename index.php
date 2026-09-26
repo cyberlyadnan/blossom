@@ -32,8 +32,8 @@ $slides = [
       fundamentals, small attentive classrooms and a campus where curiosity is never switched off.
     </p>
     <div class="hero__actions">
-      <a class="btn btn--gold" href="<?= e(url('admissions.php#enquiry')) ?>">Begin Admission <?= icon('arrow') ?></a>
-      <a class="btn btn--light" href="<?= e(url('about.php')) ?>">Discover the School</a>
+      <a class="btn btn--gold" href="<?= e(url('admissions#enquiry')) ?>">Begin Admission <?= icon('arrow') ?></a>
+      <a class="btn btn--light" href="<?= e(url('about')) ?>">Discover the School</a>
     </div>
 
     <div class="hero__meta">
@@ -57,10 +57,10 @@ $slides = [
     <div class="quick__grid" data-reveal>
       <?php
       $quick = [
-          ['book',     'Admission Process',  'Four simple steps, start to seat.',        'admissions.php'],
-          ['calendar', 'Academic Calendar',  'Terms, holidays and examination dates.',   'academics.php#calendar'],
-          ['bus',      'Transport Routes',   'GPS-tracked buses across the city.',       'facilities.php#transport'],
-          ['chat',     'Talk to Us',         'Speak with our admissions desk today.',    'contact.php'],
+          ['book',     'Admission Process',  'Four simple steps, start to seat.',        'admissions'],
+          ['calendar', 'Academic Calendar',  'Terms, holidays and examination dates.',   'academics#calendar'],
+          ['bus',      'Transport Routes',   'GPS-tracked buses across the city.',       'facilities#transport'],
+          ['chat',     'Talk to Us',         'Speak with our admissions desk today.',    'contact'],
       ];
       foreach ($quick as $q): ?>
         <a class="quick__card" href="<?= e(url($q[3])) ?>">
@@ -162,8 +162,8 @@ $slides = [
       </div>
 
       <div class="btn-row mt-4">
-        <a class="btn btn--gold" href="<?= e(url('about.php')) ?>">Discover the School <?= icon('arrow') ?></a>
-        <a class="btn btn--ghost" href="<?= e(url('about.php#principal')) ?>">Principal's Message</a>
+        <a class="btn btn--gold" href="<?= e(url('about')) ?>">Discover the School <?= icon('arrow') ?></a>
+        <a class="btn btn--ghost" href="<?= e(url('about#principal')) ?>">Principal's Message</a>
       </div>
     </div>
   </div>
@@ -232,7 +232,7 @@ $slides = [
               <?php foreach ($w[5] as $li): ?><li><?= e($li) ?></li><?php endforeach; ?>
             </ul>
             <div class="pcard__foot">
-              <a class="link-arrow" href="<?= e(url('academics.php')) ?>">Explore the curriculum</a>
+              <a class="link-arrow" href="<?= e(url('academics')) ?>">Explore the curriculum</a>
             </div>
           </div>
         </article>
@@ -281,8 +281,8 @@ $slides = [
     </div>
 
     <div class="btn-row mt-4" data-reveal>
-      <a class="btn" href="<?= e(url('facilities.php')) ?>">See All Facilities <?= icon('arrow') ?></a>
-      <a class="btn btn--ghost" href="<?= e(url('gallery.php')) ?>">Browse the Gallery</a>
+      <a class="btn" href="<?= e(url('facilities')) ?>">See All Facilities <?= icon('arrow') ?></a>
+      <a class="btn btn--ghost" href="<?= e(url('gallery')) ?>">Browse the Gallery</a>
     </div>
   </div>
 </section>
@@ -401,7 +401,7 @@ $slides = [
           <li><?= icon('check') ?><span>Campus visits welcome on any working day.</span></li>
           <li><?= icon('check') ?><span>Response within one working day.</span></li>
         </ul>
-        <a class="btn btn--gold btn--block mt-3" href="<?= e(url('admissions.php#enquiry')) ?>">Enquire Now <?= icon('arrow') ?></a>
+        <a class="btn btn--gold btn--block mt-3" href="<?= e(url('admissions#enquiry')) ?>">Enquire Now <?= icon('arrow') ?></a>
         <p class="mt-2 center" style="font-size:.84rem">
           or call <a href="tel:<?= e(str_replace(' ', '', SCHOOL_PHONE)) ?>" style="color:var(--navy-700);font-weight:700"><?= e(SCHOOL_PHONE) ?></a>
         </p>
@@ -421,7 +421,7 @@ $slides = [
           <p>No appointment theatre, no rehearsed tour. Walk the corridors, meet the teachers and decide for yourself.</p>
         </div>
         <div class="btn-row">
-          <a class="btn btn--gold" href="<?= e(url('contact.php')) ?>">Plan a Visit <?= icon('arrow') ?></a>
+          <a class="btn btn--gold" href="<?= e(url('contact')) ?>">Plan a Visit <?= icon('arrow') ?></a>
           <a class="btn btn--light" href="tel:<?= e(str_replace(' ', '', SCHOOL_PHONE)) ?>"><?= icon('phone') ?> Call Now</a>
         </div>
       </div>

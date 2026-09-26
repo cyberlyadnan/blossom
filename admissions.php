@@ -8,7 +8,7 @@ $session = date('Y') . '–' . date('y', strtotime('+1 year'));
 
 <section class="page-hero">
   <div class="wrap page-hero__in">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="<?= e(url('index.php')) ?>">Home</a><span>/</span>Admissions</nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="<?= e(url('index')) ?>">Home</a><span>/</span>Admissions</nav>
     <h1>Admissions <?= e($session) ?></h1>
     <p>Open for Nursery to Class VIII. Sections are capped by design, so early applications are strongly advised.</p>
     <div class="btn-row mt-3">
@@ -128,10 +128,10 @@ $session = date('Y') . '–' . date('y', strtotime('+1 year'));
         <h3>Admission Enquiry Form</h3>
         <p class="field__hint mb-2">Fields marked <span class="req" style="color:var(--err)">*</span> are required.</p>
 
-        <form class="form" method="post" action="<?= e(url('admissions.php')) ?>#enquiry" novalidate>
+        <form class="form" method="post" action="<?= e(url('admissions')) ?>#enquiry" novalidate>
           <?= csrf_field() ?>
           <input type="hidden" name="form" value="admission">
-          <input type="hidden" name="_redirect" value="admissions.php">
+          <input type="hidden" name="_redirect" value="admissions">
           <div class="hp"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
 
           <div class="form__row">

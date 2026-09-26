@@ -9,10 +9,32 @@ function e(?string $s): string
     return htmlspecialchars((string) $s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
-/** Build a site URL. */
+/** Build a site URL with clean extensionless path for SEO. */
 function url(string $path = ''): string
 {
-    return BASE_URL . '/' . ltrim($path, '/');
+    $path = ltrim($path, '/');
+
+    $anchor = '';
+    if (($hashPos = strpos($path, '#')) !== false) {
+        $anchor = substr($path, $hashPos);
+        $path = substr($path, 0, $hashPos);
+    }
+
+    $query = '';
+    if (($queryPos = strpos($path, '?')) !== false) {
+        $query = substr($path, $queryPos);
+        $path = substr($path, 0, $queryPos);
+    }
+
+    if (str_ends_with(strtolower($path), '.php')) {
+        $path = substr($path, 0, -4);
+    }
+
+    if ($path === 'index' || $path === '') {
+        return BASE_URL . '/' . ($query !== '' ? $query : '') . $anchor;
+    }
+
+    return BASE_URL . '/' . $path . $query . $anchor;
 }
 
 /** Build an asset URL. */
@@ -27,7 +49,21 @@ function asset(string $path): string
 function is_current(string $file): bool
 {
     $current = basename($_SERVER['SCRIPT_NAME'] ?? '');
-    return $current === strtok($file, '#');
+    if (str_ends_with(strtolower($current), '.php')) {
+        $current = substr($current, 0, -4);
+    }
+
+    $target = strtok($file, '#');
+    $target = strtok($target, '?');
+    if (str_ends_with(strtolower($target), '.php')) {
+        $target = substr($target, 0, -4);
+    }
+
+    if ($target === 'index' || $target === '') {
+        return $current === 'index' || $current === '';
+    }
+
+    return $current === $target;
 }
 
 /**
@@ -88,9 +124,17 @@ function blossom_glyph(): string
 /** Inline school crest (SVG or official logo image). */
 function crest(int $size = 44): string
 {
+    $fileWebp = __DIR__ . '/../assets/img/blossom.logo.webp';
+    if (is_file($fileWebp)) {
+        return '<img class="crest-img" src="' . e(asset('img/blossom.logo.webp')) . '" alt="' . e(SCHOOL_NAME) . ' Logo" height="' . $size . '" style="object-fit:contain; height:' . $size . 'px; width:auto; display:inline-block; vertical-align:middle;">';
+    }
+    $fileNew = __DIR__ . '/../assets/img/blossom.logo.png';
+    if (is_file($fileNew)) {
+        return '<img class="crest-img" src="' . e(asset('img/blossom.logo.png')) . '" alt="' . e(SCHOOL_NAME) . ' Logo" height="' . $size . '" style="object-fit:contain; height:' . $size . 'px; width:auto; display:inline-block; vertical-align:middle;">';
+    }
     $file = __DIR__ . '/../assets/img/logos.png';
     if (is_file($file)) {
-        return '<img class="crest-img" src="' . e(asset('img/logos.png')) . '" alt="' . e(SCHOOL_NAME) . ' Logo" width="' . $size . '" height="' . $size . '" style="object-fit:contain; width:' . $size . 'px; height:' . $size . 'px; border-radius:50%; display:inline-block; vertical-align:middle;">';
+        return '<img class="crest-img" src="' . e(asset('img/logos.png')) . '" alt="' . e(SCHOOL_NAME) . ' Logo" width="' . $size . '" height="' . $size . '" style="object-fit:contain; width:' . $size . 'px; height:' . $size . 'px; display:inline-block; vertical-align:middle;">';
     }
     $s = (string) $size;
     return '<svg class="crest" width="' . $s . '" height="' . $s . '" viewBox="0 0 64 64" fill="none" aria-hidden="true">'

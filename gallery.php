@@ -39,7 +39,7 @@ if (empty($photos)) {
 
 <section class="page-hero">
   <div class="wrap page-hero__in">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="<?= e(url('index.php')) ?>">Home</a><span>/</span>Gallery</nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="<?= e(url('index')) ?>">Home</a><span>/</span>Gallery</nav>
     <h1>Life at <?= e(SCHOOL_SHORT) ?></h1>
     <p>Ordinary days and big occasions — the assembly ground, the science lab, the stage and the field.</p>
   </div>
@@ -68,7 +68,7 @@ if (empty($photos)) {
       </p>
       <div class="btn-row mt-3" style="justify-content:center">
         <a class="btn btn--gold" href="<?= e(SOCIAL_INSTAGRAM) ?>" target="_blank" rel="noopener"><?= icon('instagram') ?> Follow on Instagram</a>
-        <a class="btn btn--ghost" href="<?= e(url('facilities.php')) ?>">Tour the Facilities</a>
+        <a class="btn btn--ghost" href="<?= e(url('facilities')) ?>">Tour the Facilities</a>
       </div>
     </div>
   </div>

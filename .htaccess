@@ -1,5 +1,27 @@
-ErrorDocument 404 /blossom/404.php
+ErrorDocument 404 /404.php
 Options -Indexes
+
 <FilesMatch "\.(csv)$">
   Require all denied
 </FilesMatch>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1. Canonical 301 redirect /index.php -> /
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ (.*)/index\.php[\ \?#] [NC]
+  RewriteRule ^(.*)index\.php$ %1/ [R=301,L]
+
+  # 2. Canonical 301 redirect *.php -> clean extensionless URL (except POST & admin)
+  RewriteCond %{REQUEST_METHOD} !POST
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ (.*)\.php[\ \?#] [NC]
+  RewriteCond %{REQUEST_URI} !/admin/ [NC]
+  RewriteCond %{REQUEST_URI} ^/(.*)\.php$ [NC]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # 3. Internal rewrite clean URL -> .php file if file exists
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME}.php -f
+  RewriteRule ^(.*)$ $1.php [L,QSA]
+</IfModule>

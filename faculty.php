@@ -24,7 +24,7 @@ if (empty($staff)) {
 
 <section class="page-hero">
   <div class="wrap page-hero__in">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="<?= e(url('index.php')) ?>">Home</a><span>/</span><a href="<?= e(url('about.php')) ?>">About</a><span>/</span>Faculty</nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="<?= e(url('index')) ?>">Home</a><span>/</span><a href="<?= e(url('about')) ?>">About</a><span>/</span>Faculty</nav>
     <h1>Our Faculty</h1>
     <p>Qualified, trained and — the part that matters most — genuinely interested in the children in front of them.</p>
   </div>
@@ -87,7 +87,7 @@ if (empty($staff)) {
         </div>
         <div class="btn-row">
           <a class="btn btn--gold" href="mailto:<?= e(SCHOOL_EMAIL) ?>?subject=Application%20for%20Teaching%20Position"><?= icon('mail') ?> Email Your CV</a>
-          <a class="btn btn--light" href="<?= e(url('contact.php')) ?>">Contact the Office</a>
+          <a class="btn btn--light" href="<?= e(url('contact')) ?>">Contact the Office</a>
         </div>
       </div>
     </div>

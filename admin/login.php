@@ -248,12 +248,8 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
     </button>
   </form>
 
-  <div class="demo-credentials">
-    🔑 Default Admin Login:<br>
-    Username: <code>admin</code> &nbsp;·&nbsp; Password: <code>admin123</code>
-  </div>
 
-  <a href="<?= e(url('index.php')) ?>" class="back-link">← Back to Public Website</a>
+  <a href="<?= e(url('index')) ?>" class="back-link">← Back to Public Website</a>
 </div>
 
 </body>

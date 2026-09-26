@@ -7,7 +7,7 @@ require_once __DIR__ . '/includes/header.php';
 
 <section class="page-hero">
   <div class="wrap page-hero__in">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="<?= e(url('index.php')) ?>">Home</a><span>/</span>Facilities</nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="<?= e(url('index')) ?>">Home</a><span>/</span>Facilities</nav>
     <h1>Campus &amp; Facilities</h1>
     <p>Everything on this page exists to do one job — make good teaching easier and keep children safe while it happens.</p>
   </div>
@@ -92,7 +92,7 @@ require_once __DIR__ . '/includes/header.php';
         <li><?= icon('check') ?><span>Fire extinguisher and first-aid kit in every bus</span></li>
       </ul>
       <div class="btn-row mt-3">
-        <a class="btn" href="<?= e(url('contact.php')) ?>">Check My Route <?= icon('arrow') ?></a>
+        <a class="btn" href="<?= e(url('contact')) ?>">Check My Route <?= icon('arrow') ?></a>
       </div>
     </div>
   </div>
@@ -130,8 +130,8 @@ require_once __DIR__ . '/includes/header.php';
           <p>Photographs only go so far. Walk the campus on any working day.</p>
         </div>
         <div class="btn-row">
-          <a class="btn btn--gold" href="<?= e(url('gallery.php')) ?>">Open the Gallery <?= icon('arrow') ?></a>
-          <a class="btn btn--light" href="<?= e(url('contact.php')) ?>">Plan a Visit</a>
+          <a class="btn btn--gold" href="<?= e(url('gallery')) ?>">Open the Gallery <?= icon('arrow') ?></a>
+          <a class="btn btn--light" href="<?= e(url('contact')) ?>">Plan a Visit</a>
         </div>
       </div>
     </div>

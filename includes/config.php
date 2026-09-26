@@ -78,21 +78,21 @@ define('BASE_URL', rtrim($__dir === '/' ? '' : $__dir, '/'));
 /*  NAVIGATION                                                         */
 /* ------------------------------------------------------------------ */
 $NAV = [
-    ['label' => 'Home',       'file' => 'index.php'],
-    ['label' => 'About',      'file' => 'about.php', 'children' => [
-        ['label' => 'Our Story',            'file' => 'about.php#story'],
-        ['label' => 'Vision & Mission',     'file' => 'about.php#vision'],
-        ['label' => "Principal's Message",  'file' => 'about.php#principal'],
-        ['label' => 'Our Faculty',          'file' => 'faculty.php'],
+    ['label' => 'Home',       'file' => 'index'],
+    ['label' => 'About',      'file' => 'about', 'children' => [
+        ['label' => 'Our Story',            'file' => 'about#story'],
+        ['label' => 'Vision & Mission',     'file' => 'about#vision'],
+        ['label' => "Principal's Message",  'file' => 'about#principal'],
+        ['label' => 'Our Faculty',          'file' => 'faculty'],
     ]],
-    ['label' => 'Academics',  'file' => 'academics.php', 'children' => [
-        ['label' => 'Curriculum',        'file' => 'academics.php#curriculum'],
-        ['label' => 'Pre-Primary Wing',  'file' => 'academics.php#pre-primary'],
-        ['label' => 'Primary Wing',      'file' => 'academics.php#primary'],
-        ['label' => 'Middle Wing',       'file' => 'academics.php#middle'],
+    ['label' => 'Academics',  'file' => 'academics', 'children' => [
+        ['label' => 'Curriculum',        'file' => 'academics#curriculum'],
+        ['label' => 'Pre-Primary Wing',  'file' => 'academics#pre-primary'],
+        ['label' => 'Primary Wing',      'file' => 'academics#primary'],
+        ['label' => 'Middle Wing',       'file' => 'academics#middle'],
     ]],
-    ['label' => 'Facilities', 'file' => 'facilities.php'],
-    ['label' => 'Gallery',    'file' => 'gallery.php'],
-    ['label' => 'Admissions', 'file' => 'admissions.php'],
-    ['label' => 'Contact',    'file' => 'contact.php'],
+    ['label' => 'Facilities', 'file' => 'facilities'],
+    ['label' => 'Gallery',    'file' => 'gallery'],
+    ['label' => 'Admissions', 'file' => 'admissions'],
+    ['label' => 'Contact',    'file' => 'contact'],
 ];
