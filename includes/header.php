@@ -3,22 +3,40 @@ require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/functions.php';
 require_once __DIR__ . '/icons.php';
 
-$page_title = $page_title ?? SCHOOL_NAME;
-$page_desc  = $page_desc  ?? SCHOOL_NAME . ' — a ' . SCHOOL_BOARD . ' school in ' . SCHOOL_CITY . ' for ' . SCHOOL_GRADES . '. ' . SCHOOL_TAGLINE . '.';
-$flash      = flash_get();
+$page_title_full = (isset($page_title) && $page_title !== SCHOOL_NAME) ? ($page_title . ' · ' . SCHOOL_NAME) : (SCHOOL_NAME . ' — Best ' . SCHOOL_BOARD . ' School in ' . SCHOOL_CITY);
+$page_desc       = $page_desc ?? SEO_DESCRIPTION;
+$page_keywords   = $page_keywords ?? SEO_KEYWORDS;
+$canonical_url   = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost') . ($_SERVER['REQUEST_URI'] ?? '');
+$flash           = flash_get();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?= e($page_title) ?> · <?= e(SCHOOL_NAME) ?></title>
+<title><?= e($page_title_full) ?></title>
 <meta name="description" content="<?= e($page_desc) ?>">
+<meta name="keywords" content="<?= e($page_keywords) ?>">
+<meta name="author" content="<?= e(SCHOOL_NAME) ?>">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="theme-color" content="#0B2A5B">
+<link rel="canonical" href="<?= e($canonical_url) ?>">
+
+<!-- OpenGraph / Facebook / WhatsApp -->
+<meta property="og:locale" content="en_US">
 <meta property="og:type" content="website">
-<meta property="og:title" content="<?= e($page_title) ?> · <?= e(SCHOOL_NAME) ?>">
+<meta property="og:title" content="<?= e($page_title_full) ?>">
 <meta property="og:description" content="<?= e($page_desc) ?>">
+<meta property="og:url" content="<?= e($canonical_url) ?>">
 <meta property="og:site_name" content="<?= e(SCHOOL_NAME) ?>">
+<meta property="og:image" content="<?= e(url('assets/img/blossom.logo.webp')) ?>">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<?= e($page_title_full) ?>">
+<meta name="twitter:description" content="<?= e($page_desc) ?>">
+<meta name="twitter:image" content="<?= e(url('assets/img/blossom.logo.webp')) ?>">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -27,16 +45,21 @@ $flash      = flash_get();
 <script type="application/ld+json">
 <?= json_encode([
     '@context' => 'https://schema.org',
-    '@type'    => 'School',
+    '@type'    => 'EducationalOrganization',
     'name'     => SCHOOL_NAME,
+    'alternateName' => SCHOOL_SHORT,
+    'url'      => $canonical_url,
+    'logo'     => url('assets/img/blossom.logo.webp'),
     'slogan'   => SCHOOL_TAGLINE,
     'telephone'=> SCHOOL_PHONE,
     'email'    => SCHOOL_EMAIL,
+    'foundingDate' => SCHOOL_EST,
     'address'  => [
         '@type' => 'PostalAddress',
         'streetAddress'   => SCHOOL_ADDRESS_1,
         'addressLocality' => SCHOOL_CITY,
         'addressRegion'   => SCHOOL_STATE,
+        'postalCode'      => '247001',
         'addressCountry'  => 'IN',
     ],
     'sameAs' => array_values(array_filter([SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK, SOCIAL_YOUTUBE], fn($u) => $u !== '#')),
@@ -44,6 +67,15 @@ $flash      = flash_get();
 </script>
 </head>
 <body>
+
+<?php if (ANNOUNCEMENT_ACTIVE && !empty(ANNOUNCEMENT_BANNER)): ?>
+<div class="announcement-banner" style="background:linear-gradient(135deg, #0B2A5B, #103b7a); color:#F3D778; font-size:0.83rem; font-weight:600; text-align:center; padding:7px 14px; border-bottom:1px solid rgba(243,215,120,0.25);">
+  <div class="wrap" style="display:flex; align-items:center; justify-content:center; gap:8px;">
+    <span>📣 <?= e(ANNOUNCEMENT_BANNER) ?></span>
+    <a href="<?= e(url('admissions')) ?>" style="color:#ffffff; text-decoration:underline; font-weight:700; margin-left:6px;">Apply Now &rarr;</a>
+  </div>
+</div>
+<?php endif; ?>
 
 <!-- ============ TOP BAR ============ -->
 <div class="topbar">

@@ -66,6 +66,24 @@ define('STAT_YEARS',    (int) get_setting('stat_years', '20'));
 define('STAT_CLUBS',    (int) get_setting('stat_clubs', '18'));
 
 /* ------------------------------------------------------------------ */
+/*  SEO & ANNOUNCEMENT BANNER                                         */
+/* ------------------------------------------------------------------ */
+define('SEO_KEYWORDS',        get_setting('seo_keywords', 'Blossom Public School Saharanpur, CBSE School Saharanpur, Best school in Saharanpur, School Admission Saharanpur, Top CBSE School Saharanpur'));
+define('SEO_DESCRIPTION',     get_setting('seo_description', 'Blossom Public School is a premier CBSE affiliated school in Saharanpur offering quality education from Nursery to Class VIII.'));
+define('ANNOUNCEMENT_BANNER', get_setting('announcement_banner', 'Admissions open for Nursery to Class VIII — Session 2026-27 | Limited seats per section'));
+define('ANNOUNCEMENT_ACTIVE', get_setting('announcement_active', '1'));
+
+/* ------------------------------------------------------------------ */
+/*  PRINCIPAL'S DESK MESSAGE                                           */
+/* ------------------------------------------------------------------ */
+define('PRINCIPAL_NAME',      get_setting('principal_name', 'Mrs. Sunita Sharma'));
+define('PRINCIPAL_TITLE',     get_setting('principal_title', 'Principal · M.A., B.Ed.'));
+define('PRINCIPAL_QUOTE',     get_setting('principal_quote', '“Ask our children what they learnt today. Their answer is our real report card.”'));
+define('PRINCIPAL_MSG_1',     get_setting('principal_msg_1', 'Dear Parents, thank you for considering Blossom Public School for your child. A school makes two kinds of promises — the ones printed in a prospectus, and the ones kept on an ordinary Tuesday morning. We care far more about the second kind.'));
+define('PRINCIPAL_MSG_2',     get_setting('principal_msg_2', 'Our teachers are asked to do something harder than finishing the syllabus: to make sure it is understood. That means asking a child to explain rather than repeat, calling a parent about one weak topic before it becomes three, and making room in the week for music, sport and art.'));
+define('PRINCIPAL_MSG_3',     get_setting('principal_msg_3', 'We are strict about a few things — punctuality, courtesy, honesty and clean work — and deliberately relaxed about the rest. Come and visit us. Watch a class in progress. That will tell you everything.'));
+
+/* ------------------------------------------------------------------ */
 /*  BASE URL — auto-detected, works in root or admin sub-folder         */
 /* ------------------------------------------------------------------ */
 $__dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/'));

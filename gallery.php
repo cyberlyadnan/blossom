@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/config.php';
-$page_title = 'Gallery';
-$page_desc  = 'Photographs of campus life, events, sport and activities at ' . SCHOOL_NAME . ', ' . SCHOOL_CITY . '.';
+$page_title    = 'Campus Life & Events Photo Gallery';
+$page_desc     = 'Browse photo gallery of Blossom Public School Saharanpur — campus facilities, cultural celebrations, sports day, and student achievements.';
+$page_keywords = 'Blossom Public School gallery, school photos Saharanpur, campus pictures, annual day event photos Saharanpur';
 require_once __DIR__ . '/includes/header.php';
 
 /* ---------------------------------------------------------------------

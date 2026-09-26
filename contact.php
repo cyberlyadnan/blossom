@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/enquiry.php';   // must run before any output
-$page_title = 'Contact Us';
-$page_desc  = 'Address, phone numbers, office hours and enquiry form for ' . SCHOOL_NAME . ', ' . SCHOOL_CITY . '.';
+$page_title    = 'Contact Us & Campus Location Map';
+$page_desc     = 'Contact Blossom Public School Saharanpur. Phone numbers, office hours, campus address in Subhash Nagar Nakhasa Bazar, and Google Maps direction.';
+$page_keywords = 'Contact Blossom Public School, school location Saharanpur, school phone number Saharanpur, campus address Nakhasa Bazar';
 require_once __DIR__ . '/includes/header.php';
 ?>
 

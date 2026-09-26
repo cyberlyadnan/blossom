@@ -180,6 +180,18 @@ function init_db_schema(PDO $db): void
             'stat_teachers'    => ['60', 'stats'],
             'stat_years'       => ['20', 'stats'],
             'stat_clubs'       => ['18', 'stats'],
+
+            'seo_keywords'     => ['Blossom Public School Saharanpur, CBSE School Saharanpur, Best school in Saharanpur, School Admission Saharanpur, Top CBSE School Saharanpur', 'seo'],
+            'seo_description'  => ['Blossom Public School is a premier CBSE affiliated school in Saharanpur offering quality education from Nursery to Class VIII.', 'seo'],
+            'announcement_banner' => ['Admissions open for Nursery to Class VIII — Session 2026-27 | Limited seats per section', 'announcement'],
+            'announcement_active' => ['1', 'announcement'],
+
+            'principal_name'   => ['Mrs. Sunita Sharma', 'principal'],
+            'principal_title'  => ['Principal · M.A., B.Ed.', 'principal'],
+            'principal_quote'  => ['“Ask our children what they learnt today. Their answer is our real report card.”', 'principal'],
+            'principal_msg_1'  => ['Dear Parents, thank you for considering Blossom Public School for your child. A school makes two kinds of promises — the ones printed in a prospectus, and the ones kept on an ordinary Tuesday morning. We care far more about the second kind.', 'principal'],
+            'principal_msg_2'  => ['Our teachers are asked to do something harder than finishing the syllabus: to make sure it is understood. That means asking a child to explain rather than repeat, calling a parent about one weak topic before it becomes three, and making room in the week for music, sport and art.', 'principal'],
+            'principal_msg_3'  => ['We are strict about a few things — punctuality, courtesy, honesty and clean work — and deliberately relaxed about the rest. Come and visit us. Watch a class in progress. That will tell you everything.', 'principal'],
         ];
 
         $stmt = $db->prepare("INSERT INTO `site_settings` (`setting_key`, `setting_value`, `setting_group`) VALUES (?, ?, ?)");

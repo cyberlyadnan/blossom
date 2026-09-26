@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/config.php';
-$page_title = 'Facilities';
-$page_desc  = 'Classrooms, science and computer labs, library, sports ground, transport, safety and medical care at ' . SCHOOL_NAME . '.';
+$page_title    = 'Campus Facilities, Labs & Infrastructure';
+$page_desc     = 'Discover world-class campus facilities at Blossom Public School Saharanpur — smart digital classrooms, science lab, computer lab, library, sports, and GPS transport.';
+$page_keywords = 'School facilities Saharanpur, smart classroom school, science lab Saharanpur, computer lab, school transport bus Saharanpur';
 require_once __DIR__ . '/includes/header.php';
 ?>
 

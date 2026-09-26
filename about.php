@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/config.php';
-$page_title = 'About the School';
-$page_desc  = 'The story, vision, values and leadership behind ' . SCHOOL_NAME . ', a CBSE school in Saharanpur.';
+$page_title    = 'About Our School, Legacy & Leadership';
+$page_desc     = 'Discover the story, vision, core educational values and Principal leadership behind Blossom Public School Saharanpur — a trusted CBSE school since 2005.';
+$page_keywords = 'About Blossom Public School, Saharanpur school history, Principal message Blossom Public School, school core values, CBSE school Saharanpur';
 require_once __DIR__ . '/includes/header.php';
 ?>
 
@@ -110,27 +111,24 @@ require_once __DIR__ . '/includes/header.php';
     </div>
     <div data-reveal data-delay="1">
       <span class="eyebrow">Principal's Message</span>
-      <h2 style="font-size:clamp(1.35rem,2.2vw,1.85rem);line-height:1.25">“Ask our children what they learnt today. Their answer is our real report card.”</h2>
+      <h2 style="font-size:clamp(1.35rem,2.2vw,1.85rem);line-height:1.25"><?= e(PRINCIPAL_QUOTE) ?></h2>
       <div class="rule"></div>
       <p class="lede mt-3">
-        Dear Parents, thank you for considering <?= e(SCHOOL_NAME) ?> for your child. A school makes
-        two kinds of promises — the ones printed in a prospectus, and the ones kept on an ordinary
-        Tuesday morning. We care far more about the second kind.
+        <?= e(PRINCIPAL_MSG_1) ?>
       </p>
-      <p class="mt-2">
-        Our teachers are asked to do something harder than finishing the syllabus: to make sure it is
-        understood. That means asking a child to explain rather than repeat, calling a parent about one
-        weak topic before it becomes three, and making room in the week for music, sport and art —
-        because a child who is only ever assessed eventually stops taking risks.
-      </p>
-      <p class="mt-2">
-        We are strict about a few things — punctuality, courtesy, honesty and clean work — and
-        deliberately relaxed about the rest. Come and visit us. Watch a class in progress. That will
-        tell you everything.
-      </p>
+      <?php if (!empty(PRINCIPAL_MSG_2)): ?>
+        <p class="mt-2">
+          <?= e(PRINCIPAL_MSG_2) ?>
+        </p>
+      <?php endif; ?>
+      <?php if (!empty(PRINCIPAL_MSG_3)): ?>
+        <p class="mt-2">
+          <?= e(PRINCIPAL_MSG_3) ?>
+        </p>
+      <?php endif; ?>
       <p class="mt-3" style="font-family:var(--font-display);font-size:1.2rem;color:var(--ink);font-weight:700">
-        Principal<br>
-        <span style="font-size:.82rem;font-family:var(--font-body);color:var(--muted);font-weight:600;letter-spacing:.06em"><?= e(SCHOOL_NAME) ?></span>
+        <?= e(PRINCIPAL_NAME) ?><br>
+        <span style="font-size:.82rem;font-family:var(--font-body);color:var(--muted);font-weight:600;letter-spacing:.06em"><?= e(PRINCIPAL_TITLE) ?> · <?= e(SCHOOL_NAME) ?></span>
       </p>
     </div>
   </div>

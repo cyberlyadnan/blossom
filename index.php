@@ -1,5 +1,7 @@
 <?php
-$page_title = 'Home';
+$page_title    = 'Best CBSE School in Saharanpur (Nursery to Class VIII)';
+$page_desc     = 'Blossom Public School is a premier CBSE affiliated school in Saharanpur offering quality education from Nursery to Class VIII with attentive class sizes and modern facilities.';
+$page_keywords = 'Blossom Public School Saharanpur, CBSE School Saharanpur, Best school in Saharanpur, School Admission Saharanpur, Top CBSE School Saharanpur';
 require_once __DIR__ . '/includes/header.php';
 
 /* Hero slides — drop hero-1.jpg / hero-2.jpg / hero-3.jpg into assets/img

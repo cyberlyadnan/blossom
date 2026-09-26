@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/config.php';
-$page_title = 'Our Faculty';
-$page_desc  = 'The teaching team at ' . SCHOOL_NAME . ' — qualifications, training and the way we teach.';
+$page_title    = 'Our Faculty & Academic Coordinators';
+$page_desc     = 'Meet the experienced and qualified teaching faculty and academic coordinators at Blossom Public School Saharanpur.';
+$page_keywords = 'Blossom Public School teachers, faculty list Saharanpur, qualified school teachers, academic coordinators Saharanpur';
 require_once __DIR__ . '/includes/header.php';
 
 try {

@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/enquiry.php';   // must run before any output
-$page_title = 'Admissions';
-$page_desc  = 'Admission process, age criteria, documents and enquiry form for ' . SCHOOL_NAME . ', ' . SCHOOL_CITY . '.';
+$page_title    = 'Admissions Open 2026-27 (Nursery to Class VIII)';
+$page_desc     = 'Apply online for school admission at Blossom Public School Saharanpur. Check admission process, age eligibility criteria, required documents, and submit enquiry form.';
+$page_keywords = 'School admission Saharanpur, Blossom Public School admission 2026-27, nursery admission Saharanpur, class 1 to 8 admission, online school form Saharanpur';
 require_once __DIR__ . '/includes/header.php';
 $session = date('Y') . '–' . date('y', strtotime('+1 year'));
 ?>

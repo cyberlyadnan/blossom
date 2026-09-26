@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/config.php';
-$page_title = 'Academics';
-$page_desc  = 'CBSE curriculum from Nursery to Class VIII at ' . SCHOOL_NAME . ' — pre-primary, primary and middle wings, teaching methodology and assessment.';
+$page_title    = 'Academics & CBSE Curriculum (Nursery to Class VIII)';
+$page_desc     = 'Explore the comprehensive CBSE academic curriculum at Blossom Public School Saharanpur across Pre-Primary, Primary, and Middle wings with activity-based learning.';
+$page_keywords = 'CBSE curriculum Saharanpur, Blossom Public School academics, primary school syllabus, middle wing courses, pre-primary nursery education Saharanpur';
 require_once __DIR__ . '/includes/header.php';
 ?>
 
