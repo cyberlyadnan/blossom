@@ -35,7 +35,8 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
             }
         }
         flash_set('ok', 'Section headings and description texts updated successfully!');
-        header('Location: ' . url('admin/sections.php'));
+        $activeTab = $_POST['redirect_tab'] ?? 'why';
+        header('Location: ' . url('admin/sections.php?tab=' . $activeTab));
         exit;
     }
 
@@ -69,7 +70,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                 flash_set('ok', 'Item deleted.');
             }
         }
-        header('Location: ' . url('admin/sections.php'));
+        header('Location: ' . url('admin/sections.php?tab=why'));
         exit;
     }
 
@@ -118,7 +119,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                 flash_set('ok', 'Wing deleted.');
             }
         }
-        header('Location: ' . url('admin/sections.php'));
+        header('Location: ' . url('admin/sections.php?tab=wings'));
         exit;
     }
 
@@ -152,7 +153,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                 flash_set('ok', 'Value deleted.');
             }
         }
-        header('Location: ' . url('admin/sections.php'));
+        header('Location: ' . url('admin/sections.php?tab=values'));
         exit;
     }
 
@@ -199,9 +200,14 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                 flash_set('ok', 'Facility deleted.');
             }
         }
-        header('Location: ' . url('admin/sections.php'));
+        header('Location: ' . url('admin/sections.php?tab=facilities'));
         exit;
     }
+}
+
+$activeTab = $_GET['tab'] ?? 'why';
+if (!in_array($activeTab, ['why', 'wings', 'values', 'facilities'])) {
+    $activeTab = 'why';
 }
 
 $admin_page_title = 'Page Sections & Content Manager';
@@ -223,17 +229,18 @@ $facList       = $db->query("SELECT * FROM `facilities_list` ORDER BY `display_o
   </div>
 
   <div class="nav-tabs">
-    <button type="button" class="tab-btn active" data-tab="tab-why"><?= icon('check') ?> <span>Why Choose Us</span></button>
-    <button type="button" class="tab-btn" data-tab="tab-wings"><?= icon('book') ?> <span>Academic Wings &amp; Curriculum</span></button>
-    <button type="button" class="tab-btn" data-tab="tab-values"><?= icon('heart') ?> <span>Vision, Mission &amp; Values</span></button>
-    <button type="button" class="tab-btn" data-tab="tab-facilities"><?= icon('laptop') ?> <span>Campus Facilities</span></button>
+    <button type="button" class="tab-btn <?= $activeTab === 'why' ? 'active' : '' ?>" data-tab="tab-why"><?= icon('check') ?> <span>Why Choose Us</span></button>
+    <button type="button" class="tab-btn <?= $activeTab === 'wings' ? 'active' : '' ?>" data-tab="tab-wings"><?= icon('book') ?> <span>Academic Wings &amp; Curriculum</span></button>
+    <button type="button" class="tab-btn <?= $activeTab === 'values' ? 'active' : '' ?>" data-tab="tab-values"><?= icon('heart') ?> <span>Vision, Mission &amp; Values</span></button>
+    <button type="button" class="tab-btn <?= $activeTab === 'facilities' ? 'active' : '' ?>" data-tab="tab-facilities"><?= icon('laptop') ?> <span>Campus Facilities</span></button>
   </div>
 
   <!-- TAB 1: WHY CHOOSE US -->
-  <div class="tab-pane card" id="tab-why">
+  <div class="tab-pane card" id="tab-why" style="display:<?= $activeTab === 'why' ? 'block' : 'none' ?>;">
     <form method="POST" action="" style="margin-bottom:1.5rem; border-bottom:1px solid #e2e8f0; padding-bottom:1.5rem;">
       <?= csrf_field() ?>
       <input type="hidden" name="form_type" value="update_headings">
+      <input type="hidden" name="redirect_tab" value="why">
       <h3 style="font-size:1.1rem; font-weight:700; color:var(--adm-navy); margin-bottom:1rem;">Headline &amp; Subtitle</h3>
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1rem;">
         <div class="form-group">
@@ -282,10 +289,11 @@ $facList       = $db->query("SELECT * FROM `facilities_list` ORDER BY `display_o
   </div>
 
   <!-- TAB 2: ACADEMIC WINGS & CURRICULUM -->
-  <div class="tab-pane card" id="tab-wings" style="display:none;">
+  <div class="tab-pane card" id="tab-wings" style="display:<?= $activeTab === 'wings' ? 'block' : 'none' ?>;">
     <form method="POST" action="" style="margin-bottom:1.5rem; border-bottom:1px solid #e2e8f0; padding-bottom:1.5rem;">
       <?= csrf_field() ?>
       <input type="hidden" name="form_type" value="update_headings">
+      <input type="hidden" name="redirect_tab" value="wings">
       <h3 style="font-size:1.1rem; font-weight:700; color:var(--adm-navy); margin-bottom:1rem;">Curriculum Approach Content</h3>
       <div style="display:grid; grid-template-columns: 1fr; gap:1rem;">
         <div class="form-group">
@@ -337,10 +345,11 @@ $facList       = $db->query("SELECT * FROM `facilities_list` ORDER BY `display_o
   </div>
 
   <!-- TAB 3: VISION, MISSION & CORE VALUES -->
-  <div class="tab-pane card" id="tab-values" style="display:none;">
+  <div class="tab-pane card" id="tab-values" style="display:<?= $activeTab === 'values' ? 'block' : 'none' ?>;">
     <form method="POST" action="" style="margin-bottom:1.5rem; border-bottom:1px solid #e2e8f0; padding-bottom:1.5rem;">
       <?= csrf_field() ?>
       <input type="hidden" name="form_type" value="update_headings">
+      <input type="hidden" name="redirect_tab" value="values">
       <h3 style="font-size:1.1rem; font-weight:700; color:var(--adm-navy); margin-bottom:1rem;">Vision, Mission &amp; Promise Statements</h3>
       <div style="display:grid; grid-template-columns: 1fr; gap:1rem;">
         <div class="form-group">
@@ -398,10 +407,11 @@ $facList       = $db->query("SELECT * FROM `facilities_list` ORDER BY `display_o
   </div>
 
   <!-- TAB 4: CAMPUS FACILITIES -->
-  <div class="tab-pane card" id="tab-facilities" style="display:none;">
+  <div class="tab-pane card" id="tab-facilities" style="display:<?= $activeTab === 'facilities' ? 'block' : 'none' ?>;">
     <form method="POST" action="" style="margin-bottom:1.5rem; border-bottom:1px solid #e2e8f0; padding-bottom:1.5rem;">
       <?= csrf_field() ?>
       <input type="hidden" name="form_type" value="update_headings">
+      <input type="hidden" name="redirect_tab" value="facilities">
       <h3 style="font-size:1.1rem; font-weight:700; color:var(--adm-navy); margin-bottom:1rem;">Facilities &amp; Safety Headings</h3>
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1rem;">
         <div class="form-group">

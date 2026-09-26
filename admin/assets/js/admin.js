@@ -77,6 +77,26 @@ document.addEventListener('DOMContentLoaded', () => {
       if (activePane) {
         activePane.style.display = 'block';
       }
+
+      // Sync active tab query param and sidebar
+      const tabKey = target ? target.replace(/^tab-/, '') : '';
+      if (tabKey) {
+        const activeTabInput = document.getElementById('activeTabInput');
+        if (activeTabInput) activeTabInput.value = tabKey;
+
+        const url = new URL(window.location.href);
+        url.searchParams.set('tab', tabKey);
+        window.history.replaceState(null, '', url.toString());
+
+        // Update sidebar active sublink
+        document.querySelectorAll('.sidebar-sublink').forEach(sublink => {
+          if (sublink.href.includes('tab=' + tabKey)) {
+            sublink.classList.add('active');
+          } else if (sublink.href.includes(window.location.pathname)) {
+            sublink.classList.remove('active');
+          }
+        });
+      }
     });
   });
 

@@ -148,6 +148,52 @@ body {
   color: var(--adm-gold);
 }
 
+.sidebar-sublink {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 1rem 0.5rem 1.5rem;
+  color: var(--adm-sidebar-text);
+  text-decoration: none;
+  font-size: 0.86rem;
+  font-weight: 500;
+  border-radius: var(--adm-radius-sm);
+  margin-bottom: 0.2rem;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.sublink-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(148, 163, 184, 0.4);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sidebar-sublink:hover {
+  background: var(--adm-sidebar-hover);
+  color: #ffffff;
+}
+
+.sidebar-sublink:hover .sublink-dot {
+  background: var(--adm-gold);
+  transform: scale(1.3);
+}
+
+.sidebar-sublink.active {
+  background: linear-gradient(135deg, rgba(217, 175, 60, 0.18) 0%, rgba(217, 175, 60, 0.05) 100%);
+  color: var(--adm-gold);
+  font-weight: 600;
+  border-left: 3px solid var(--adm-gold);
+}
+
+.sidebar-sublink.active .sublink-dot {
+  background: var(--adm-gold);
+  box-shadow: 0 0 6px var(--adm-gold);
+}
+
 .sidebar-badge {
   margin-left: auto;
   background: #e11d48;
@@ -927,11 +973,11 @@ figure.media img,
 /* Modern Segmented Pill Tabs */
 .nav-tabs {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.55rem;
   background: #f1f5f9;
-  padding: 0.45rem;
+  padding: 0.5rem;
   border-radius: 14px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #cbd5e1;
   margin-bottom: 1.75rem;
   overflow-x: auto;
   scrollbar-width: thin;
@@ -944,7 +990,7 @@ figure.media img,
 }
 
 .nav-tabs::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #94a3b8;
   border-radius: 4px;
 }
 
@@ -952,16 +998,17 @@ figure.media img,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
-  padding: 0.7rem 1.25rem;
+  gap: 0.6rem;
+  padding: 0.75rem 1.35rem;
   background: transparent;
-  border: 1px solid transparent;
+  border: 1.5px solid transparent;
   border-radius: 10px;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #475569;
   cursor: pointer;
   white-space: nowrap;
+  text-decoration: none;
   flex-shrink: 0;
   transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -971,29 +1018,37 @@ figure.media img,
   height: 1.15rem;
   flex-shrink: 0;
   color: #64748b;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .tab-btn:hover {
-  color: #0f172a;
-  background: rgba(255, 255, 255, 0.75);
+  color: #0b2a5b;
+  background: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .tab-btn:hover svg {
   color: #0b2a5b;
+}
+
+/* HIGH CONTRAST VIBRANT ACTIVE TAB HIGHLIGHT */
+.tab-btn.active {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #0b2a5b 0%, #163d77 100%) !important;
+  font-weight: 700 !important;
+  border-color: #0b2a5b !important;
+  box-shadow: 0 4px 16px rgba(11, 42, 91, 0.28), 0 0 0 2px rgba(217, 175, 60, 0.4) !important;
   transform: translateY(-1px);
 }
 
-.tab-btn.active {
-  color: #0b2a5b;
-  background: #ffffff;
-  font-weight: 700;
-  border-color: rgba(11, 42, 91, 0.12);
-  box-shadow: 0 4px 14px rgba(11, 42, 91, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+.tab-btn.active svg {
+  color: #f3d778 !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
 }
 
-.tab-btn.active svg {
-  color: #d9af3c;
+.tab-btn.active span {
+  color: #ffffff !important;
 }
 
 /* Responsive Breakpoints */

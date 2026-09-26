@@ -71,9 +71,15 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
         }
     }
 
+    $redirectTab = $_POST['active_tab'] ?? 'identity';
     flash_set('ok', 'Website content, SEO settings, and Principal message updated successfully!');
-    header('Location: ' . url('admin/settings.php'));
+    header('Location: ' . url('admin/settings.php?tab=' . $redirectTab));
     exit;
+}
+
+$activeTab = $_GET['tab'] ?? 'identity';
+if (!in_array($activeTab, ['identity', 'contact', 'seo', 'principal', 'social', 'stats'])) {
+    $activeTab = 'identity';
 }
 
 $admin_page_title = 'Site Settings, SEO & Content';
@@ -89,19 +95,20 @@ require_once __DIR__ . '/header.php';
   </div>
 
   <div class="nav-tabs">
-    <button type="button" class="tab-btn active" data-tab="tab-identity"><?= icon('book') ?> <span>School Identity</span></button>
-    <button type="button" class="tab-btn" data-tab="tab-contact"><?= icon('phone') ?> <span>Contact &amp; Address</span></button>
-    <button type="button" class="tab-btn" data-tab="tab-seo"><?= icon('globe') ?> <span>SEO &amp; Announcement</span></button>
-    <button type="button" class="tab-btn" data-tab="tab-principal"><?= icon('user') ?> <span>Principal's Message</span></button>
-    <button type="button" class="tab-btn" data-tab="tab-social"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg> <span>Social Links</span></button>
-    <button type="button" class="tab-btn" data-tab="tab-stats"><?= icon('trophy') ?> <span>Headline Numbers</span></button>
+    <button type="button" class="tab-btn <?= $activeTab === 'identity' ? 'active' : '' ?>" data-tab="tab-identity"><?= icon('book') ?> <span>School Identity</span></button>
+    <button type="button" class="tab-btn <?= $activeTab === 'contact' ? 'active' : '' ?>" data-tab="tab-contact"><?= icon('phone') ?> <span>Contact &amp; Address</span></button>
+    <button type="button" class="tab-btn <?= $activeTab === 'seo' ? 'active' : '' ?>" data-tab="tab-seo"><?= icon('globe') ?> <span>SEO &amp; Announcement</span></button>
+    <button type="button" class="tab-btn <?= $activeTab === 'principal' ? 'active' : '' ?>" data-tab="tab-principal"><?= icon('user') ?> <span>Principal's Message</span></button>
+    <button type="button" class="tab-btn <?= $activeTab === 'social' ? 'active' : '' ?>" data-tab="tab-social"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg> <span>Social Links</span></button>
+    <button type="button" class="tab-btn <?= $activeTab === 'stats' ? 'active' : '' ?>" data-tab="tab-stats"><?= icon('trophy') ?> <span>Headline Numbers</span></button>
   </div>
 
   <form method="POST" action="">
     <?= csrf_field() ?>
+    <input type="hidden" name="active_tab" id="activeTabInput" value="<?= e($activeTab) ?>">
 
     <!-- TAB 1: School Identity -->
-    <div class="tab-pane card" id="tab-identity">
+    <div class="tab-pane card" id="tab-identity" style="display:<?= $activeTab === 'identity' ? 'block' : 'none' ?>;">
       <div class="card-header">
         <h3 class="card-title"><?= icon('book') ?> School Branding &amp; Identity</h3>
       </div>
@@ -154,7 +161,7 @@ require_once __DIR__ . '/header.php';
     </div>
 
     <!-- TAB 2: Contact Details -->
-    <div class="tab-pane card" id="tab-contact" style="display:none;">
+    <div class="tab-pane card" id="tab-contact" style="display:<?= $activeTab === 'contact' ? 'block' : 'none' ?>;">
       <div class="card-header">
         <h3 class="card-title">📞 Contact Numbers, Hours &amp; Location</h3>
       </div>
@@ -203,7 +210,7 @@ require_once __DIR__ . '/header.php';
     </div>
 
     <!-- TAB 3: SEO & Announcement Banner -->
-    <div class="tab-pane card" id="tab-seo" style="display:none;">
+    <div class="tab-pane card" id="tab-seo" style="display:<?= $activeTab === 'seo' ? 'block' : 'none' ?>;">
       <div class="card-header">
         <h3 class="card-title">🔍 Search Engine Optimization (SEO) &amp; Top Banner</h3>
       </div>
@@ -239,7 +246,7 @@ require_once __DIR__ . '/header.php';
     </div>
 
     <!-- TAB 4: Principal's Desk & Message -->
-    <div class="tab-pane card" id="tab-principal" style="display:none;">
+    <div class="tab-pane card" id="tab-principal" style="display:<?= $activeTab === 'principal' ? 'block' : 'none' ?>;">
       <div class="card-header">
         <h3 class="card-title">🎓 Principal's Message &amp; Leadership Bio</h3>
       </div>
@@ -279,7 +286,7 @@ require_once __DIR__ . '/header.php';
     </div>
 
     <!-- TAB 5: Social Links -->
-    <div class="tab-pane card" id="tab-social" style="display:none;">
+    <div class="tab-pane card" id="tab-social" style="display:<?= $activeTab === 'social' ? 'block' : 'none' ?>;">
       <div class="card-header">
         <h3 class="card-title">🌐 Social Media Channels</h3>
       </div>
@@ -307,7 +314,7 @@ require_once __DIR__ . '/header.php';
     </div>
 
     <!-- TAB 6: Headline Stats -->
-    <div class="tab-pane card" id="tab-stats" style="display:none;">
+    <div class="tab-pane card" id="tab-stats" style="display:<?= $activeTab === 'stats' ? 'block' : 'none' ?>;">
       <div class="card-header">
         <h3 class="card-title">📊 Homepage Counter Strip Numbers</h3>
       </div>

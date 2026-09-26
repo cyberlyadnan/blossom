@@ -160,14 +160,14 @@ require_once __DIR__ . '/header.php';
 </div>
 
 <!-- Filter Tabs -->
-<div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.5rem;">
-  <a href="<?= e(url('admin/gallery.php?cat=all')) ?>" class="btn btn-sm <?= $filterCat === 'all' ? 'btn-primary' : 'btn-outline' ?>">
+<div class="nav-tabs" style="margin-bottom:1.5rem;">
+  <a href="<?= e(url('admin/gallery.php?cat=all')) ?>" class="tab-btn <?= $filterCat === 'all' ? 'active' : '' ?>">
     All Photos (<?= $totalCount ?>)
   </a>
   <?php foreach ($cats as $key => $label): 
     $cnt = $catCounts[$key] ?? 0;
   ?>
-    <a href="<?= e(url('admin/gallery.php?cat=' . $key)) ?>" class="btn btn-sm <?= $filterCat === $key ? 'btn-primary' : 'btn-outline' ?>">
+    <a href="<?= e(url('admin/gallery.php?cat=' . $key)) ?>" class="tab-btn <?= $filterCat === $key ? 'active' : '' ?>">
       <?= e($label) ?> (<?= $cnt ?>)
     </a>
   <?php endforeach; ?>
