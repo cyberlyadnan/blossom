@@ -62,46 +62,46 @@ try {
 
       <div class="nav-section-title">Page Sections (Dynamic)</div>
 
-      <a href="<?= e(url('admin/sections.php?tab=why')) ?>" class="sidebar-sublink <?= ($currentPage === 'sections.php' && ($currentTab === 'why' || $currentTab === '')) ? 'active' : '' ?>">
+      <a href="<?= e(url('admin/sections-why.php')) ?>" class="sidebar-sublink <?= $currentPage === 'sections-why.php' ? 'active' : '' ?>">
         <span class="sublink-dot"></span>
         <span>Why Choose Us</span>
       </a>
-      <a href="<?= e(url('admin/sections.php?tab=wings')) ?>" class="sidebar-sublink <?= ($currentPage === 'sections.php' && $currentTab === 'wings') ? 'active' : '' ?>">
+      <a href="<?= e(url('admin/sections-academics.php')) ?>" class="sidebar-sublink <?= $currentPage === 'sections-academics.php' ? 'active' : '' ?>">
         <span class="sublink-dot"></span>
         <span>Academic Wings</span>
       </a>
-      <a href="<?= e(url('admin/sections.php?tab=values')) ?>" class="sidebar-sublink <?= ($currentPage === 'sections.php' && $currentTab === 'values') ? 'active' : '' ?>">
+      <a href="<?= e(url('admin/sections-values.php')) ?>" class="sidebar-sublink <?= $currentPage === 'sections-values.php' ? 'active' : '' ?>">
         <span class="sublink-dot"></span>
         <span>Vision & Values</span>
       </a>
-      <a href="<?= e(url('admin/sections.php?tab=facilities')) ?>" class="sidebar-sublink <?= ($currentPage === 'sections.php' && $currentTab === 'facilities') ? 'active' : '' ?>">
+      <a href="<?= e(url('admin/sections-facilities.php')) ?>" class="sidebar-sublink <?= $currentPage === 'sections-facilities.php' ? 'active' : '' ?>">
         <span class="sublink-dot"></span>
         <span>Campus Facilities</span>
       </a>
 
       <div class="nav-section-title">Website Settings & SEO</div>
 
-      <a href="<?= e(url('admin/settings.php?tab=identity')) ?>" class="sidebar-sublink <?= ($currentPage === 'settings.php' && ($currentTab === 'identity' || $currentTab === '')) ? 'active' : '' ?>">
+      <a href="<?= e(url('admin/settings-identity.php')) ?>" class="sidebar-sublink <?= $currentPage === 'settings-identity.php' ? 'active' : '' ?>">
         <span class="sublink-dot"></span>
         <span>School Identity</span>
       </a>
-      <a href="<?= e(url('admin/settings.php?tab=contact')) ?>" class="sidebar-sublink <?= ($currentPage === 'settings.php' && $currentTab === 'contact') ? 'active' : '' ?>">
+      <a href="<?= e(url('admin/settings-contact.php')) ?>" class="sidebar-sublink <?= $currentPage === 'settings-contact.php' ? 'active' : '' ?>">
         <span class="sublink-dot"></span>
         <span>Contact & Address</span>
       </a>
-      <a href="<?= e(url('admin/settings.php?tab=seo')) ?>" class="sidebar-sublink <?= ($currentPage === 'settings.php' && $currentTab === 'seo') ? 'active' : '' ?>">
+      <a href="<?= e(url('admin/settings-seo.php')) ?>" class="sidebar-sublink <?= $currentPage === 'settings-seo.php' ? 'active' : '' ?>">
         <span class="sublink-dot"></span>
         <span>SEO & Banner</span>
       </a>
-      <a href="<?= e(url('admin/settings.php?tab=principal')) ?>" class="sidebar-sublink <?= ($currentPage === 'settings.php' && $currentTab === 'principal') ? 'active' : '' ?>">
+      <a href="<?= e(url('admin/settings-principal.php')) ?>" class="sidebar-sublink <?= $currentPage === 'settings-principal.php' ? 'active' : '' ?>">
         <span class="sublink-dot"></span>
         <span>Principal's Message</span>
       </a>
-      <a href="<?= e(url('admin/settings.php?tab=social')) ?>" class="sidebar-sublink <?= ($currentPage === 'settings.php' && $currentTab === 'social') ? 'active' : '' ?>">
+      <a href="<?= e(url('admin/settings-social.php')) ?>" class="sidebar-sublink <?= $currentPage === 'settings-social.php' ? 'active' : '' ?>">
         <span class="sublink-dot"></span>
         <span>Social Links</span>
       </a>
-      <a href="<?= e(url('admin/settings.php?tab=stats')) ?>" class="sidebar-sublink <?= ($currentPage === 'settings.php' && $currentTab === 'stats') ? 'active' : '' ?>">
+      <a href="<?= e(url('admin/settings-stats.php')) ?>" class="sidebar-sublink <?= $currentPage === 'settings-stats.php' ? 'active' : '' ?>">
         <span class="sublink-dot"></span>
         <span>Headline Numbers</span>
       </a>
