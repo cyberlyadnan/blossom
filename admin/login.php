@@ -251,6 +251,5 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
 
   <a href="<?= e(url('index')) ?>" class="back-link">← Back to Public Website</a>
 </div>
-
 </body>
 </html>

@@ -89,12 +89,12 @@ require_once __DIR__ . '/header.php';
   </div>
 
   <div class="nav-tabs">
-    <button class="tab-btn active" data-tab="tab-identity"><?= icon('book') ?> School Identity</button>
-    <button class="tab-btn" data-tab="tab-contact"><?= icon('phone') ?> Contact &amp; Address</button>
-    <button class="tab-btn" data-tab="tab-seo"><?= icon('globe') ?> SEO &amp; Announcement</button>
-    <button class="tab-btn" data-tab="tab-principal"><?= icon('user') ?> Principal's Message</button>
-    <button class="tab-btn" data-tab="tab-social">🌐 Social Links</button>
-    <button class="tab-btn" data-tab="tab-stats"><?= icon('trophy') ?> Headline Numbers</button>
+    <button type="button" class="tab-btn active" data-tab="tab-identity"><?= icon('book') ?> <span>School Identity</span></button>
+    <button type="button" class="tab-btn" data-tab="tab-contact"><?= icon('phone') ?> <span>Contact &amp; Address</span></button>
+    <button type="button" class="tab-btn" data-tab="tab-seo"><?= icon('globe') ?> <span>SEO &amp; Announcement</span></button>
+    <button type="button" class="tab-btn" data-tab="tab-principal"><?= icon('user') ?> <span>Principal's Message</span></button>
+    <button type="button" class="tab-btn" data-tab="tab-social"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg> <span>Social Links</span></button>
+    <button type="button" class="tab-btn" data-tab="tab-stats"><?= icon('trophy') ?> <span>Headline Numbers</span></button>
   </div>
 
   <form method="POST" action="">

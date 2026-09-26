@@ -3,18 +3,32 @@
  * ===================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Sidebar Mobile Toggle
+  // 1. Sidebar Desktop Collapse & Mobile Toggle
   const sidebar = document.getElementById('adminSidebar');
   const toggleBtn = document.getElementById('sidebarToggleBtn');
+  const wrapper = document.querySelector('.admin-wrapper');
 
-  if (toggleBtn && sidebar) {
+  // Load saved sidebar state for desktop
+  if (wrapper && localStorage.getItem('sidebar_collapsed') === 'true' && window.innerWidth > 992) {
+    wrapper.classList.add('sidebar-collapsed');
+  }
+
+  if (toggleBtn) {
     toggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('show');
+      if (window.innerWidth <= 992) {
+        if (sidebar) sidebar.classList.toggle('show');
+      } else {
+        if (wrapper) {
+          wrapper.classList.toggle('sidebar-collapsed');
+          const isCollapsed = wrapper.classList.contains('sidebar-collapsed');
+          localStorage.setItem('sidebar_collapsed', isCollapsed ? 'true' : 'false');
+        }
+      }
     });
 
     // Close sidebar when clicking outside on mobile
     document.addEventListener('click', (e) => {
-      if (window.innerWidth <= 992 && sidebar.classList.contains('show')) {
+      if (window.innerWidth <= 992 && sidebar && sidebar.classList.contains('show')) {
         if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
           sidebar.classList.remove('show');
         }
