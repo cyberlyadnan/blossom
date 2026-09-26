@@ -176,27 +176,34 @@ $slides = [
   <div class="wrap">
     <div class="head head--center" data-reveal>
       <span class="eyebrow eyebrow--center">Why Parents Choose Us</span>
-      <h2>Six things we refuse to compromise on</h2>
+      <h2><?= e(get_setting('why_choose_title', 'Six things we refuse to compromise on')) ?></h2>
       <div class="rule"></div>
-      <p class="lede mt-2">Every promise below is something you can walk in and verify on any working day.</p>
+      <p class="lede mt-2"><?= e(get_setting('why_choose_subtitle', 'Every promise below is something you can walk in and verify on any working day.')) ?></p>
     </div>
 
     <div class="grid g-3">
       <?php
-      $why = [
-          ['users',   'Attentive Class Sizes',   'Sections are capped so teaching stays personal and no child slips quietly behind.'],
-          ['bulb',    'Concept-Led Learning',    'Activity, enquiry and application — children explain the why, not just recite the what.'],
-          ['shield',  'Safety You Can Verify',   'CCTV-monitored corridors, controlled entry, verified staff and a trained first-aid room.'],
-          ['palette', 'Arts, Sport & Music',     'Timetabled — not optional. Every child performs, plays and creates each term.'],
-          ['laptop',  'Smart, Practical Rooms',  'Digital boards, a hands-on science lab and a computer lab used weekly by every class.'],
-          ['heart',   'Values That Travel',      'Courtesy, honesty and responsibility taught as habits, reinforced by house mentors.'],
-      ];
-      foreach ($why as $i => $w): ?>
+      try {
+          $db = get_db();
+          $whyItems = $db->query("SELECT * FROM `sections_why_choose` WHERE `is_active` = 1 ORDER BY `display_order` ASC, `id` ASC")->fetchAll();
+      } catch (Exception $e) { $whyItems = []; }
+
+      if (empty($whyItems)) {
+          $whyItems = [
+              ['icon' => 'users',   'title' => 'Attentive Class Sizes',   'description' => 'Sections are capped so teaching stays personal and no child slips quietly behind.'],
+              ['icon' => 'bulb',    'title' => 'Concept-Led Learning',    'description' => 'Activity, enquiry and application — children explain the why, not just recite the what.'],
+              ['icon' => 'shield',  'title' => 'Safety You Can Verify',   'description' => 'CCTV-monitored corridors, controlled entry, verified staff and a trained first-aid room.'],
+              ['icon' => 'palette', 'title' => 'Arts, Sport & Music',     'description' => 'Timetabled — not optional. Every child performs, plays and creates each term.'],
+              ['icon' => 'laptop',  'title' => 'Smart, Practical Rooms',  'description' => 'Digital boards, a hands-on science lab and a computer lab used weekly by every class.'],
+              ['icon' => 'heart',   'title' => 'Values That Travel',      'description' => 'Courtesy, honesty and responsibility taught as habits, reinforced by house mentors.'],
+          ];
+      }
+      foreach ($whyItems as $i => $w): ?>
         <article class="card" data-reveal data-delay="<?= $i % 3 ?>">
           <span class="card__num"><?= str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) ?></span>
-          <span class="card__ico"><?= icon($w[0]) ?></span>
-          <h3><?= e($w[1]) ?></h3>
-          <p><?= e($w[2]) ?></p>
+          <span class="card__ico"><?= icon($w['icon']) ?></span>
+          <h3><?= e($w['title']) ?></h3>
+          <p><?= e($w['description']) ?></p>
         </article>
       <?php endforeach; ?>
     </div>
@@ -215,23 +222,31 @@ $slides = [
 
     <div class="grid g-3">
       <?php
-      $wings = [
-          ['Pre-Primary Wing', 'Nursery · LKG · UKG', 'pre-primary.jpg', 3, 'Play-based days built around phonics, number sense, motor skills and confident speech.',
-            ['Phonics & pre-reading', 'Number readiness', 'Rhymes, art and free play', 'Toilet-trained care & caregivers']],
-          ['Primary Wing', 'Class I to V', 'primary.jpg', 1, 'Where fundamentals are locked in — reading fluency, mental maths and clear written expression.',
-            ['English, Hindi & Mathematics', 'EVS with field activities', 'Weekly library & computer periods', 'Continuous, low-stress assessment']],
-          ['Middle Wing', 'Class VI to VIII', 'middle.jpg', 2, 'Subject specialists, laboratory work and study habits that carry a child into the board years.',
-            ['Science with practicals', 'Social Science & third language', 'Project & presentation work', 'Olympiad and quiz coaching']],
-      ];
-      foreach ($wings as $i => $w): ?>
+      try {
+          $db = get_db();
+          $dbWings = $db->query("SELECT * FROM `academic_wings` WHERE `is_active` = 1 ORDER BY `display_order` ASC, `id` ASC")->fetchAll();
+      } catch (Exception $e) { $dbWings = []; }
+
+      if (empty($dbWings)) {
+          $dbWings = [
+              ['name' => 'Pre-Primary Wing', 'class_range' => 'Nursery · LKG · UKG', 'image_path' => 'pre-primary.jpg', 'display_order' => 3, 'lede' => 'Play-based days built around phonics, number sense, motor skills and confident speech.', 'points' => "Phonics & pre-reading\nNumber readiness\nRhymes, art and free play\nToilet-trained care & caregivers"],
+              ['name' => 'Primary Wing', 'class_range' => 'Class I to V', 'image_path' => 'primary.jpg', 'display_order' => 1, 'lede' => 'Where fundamentals are locked in — reading fluency, mental maths and clear written expression.', 'points' => "English, Hindi & Mathematics\nEVS with field activities\nWeekly library & computer periods\nContinuous, low-stress assessment"],
+              ['name' => 'Middle Wing', 'class_range' => 'Class VI to VIII', 'image_path' => 'middle.jpg', 'display_order' => 2, 'lede' => 'Subject specialists, laboratory work and study habits that carry a child into the board years.', 'points' => "Science with practicals\nSocial Science & third language\nProject & presentation work\nOlympiad and quiz coaching"],
+          ];
+      }
+      foreach ($dbWings as $i => $w):
+          $pts = is_array($w['points']) ? $w['points'] : explode("\n", trim($w['points']));
+      ?>
         <article class="pcard" data-reveal data-delay="<?= $i ?>">
-          <?= media($w[2], $w[0], $w[3], '', '16/10') ?>
+          <?= media($w['image_path'], $w['name'], (int) ($w['display_order'] ?? ($i + 1)), '', '16/10') ?>
           <div class="pcard__body">
-            <span class="pcard__tag"><?= e($w[1]) ?></span>
-            <h3><?= e($w[0]) ?></h3>
-            <p><?= e($w[4]) ?></p>
+            <span class="pcard__tag"><?= e($w['class_range']) ?></span>
+            <h3><?= e($w['name']) ?></h3>
+            <p><?= e($w['lede']) ?></p>
             <ul>
-              <?php foreach ($w[5] as $li): ?><li><?= e($li) ?></li><?php endforeach; ?>
+              <?php foreach (array_slice($pts, 0, 4) as $li): if (trim($li) !== ''): ?>
+                <li><?= e(trim($li)) ?></li>
+              <?php endif; endforeach; ?>
             </ul>
             <div class="pcard__foot">
               <a class="link-arrow" href="<?= e(url('academics')) ?>">Explore the curriculum</a>

@@ -19,17 +19,13 @@ require_once __DIR__ . '/includes/header.php';
   <div class="wrap split split--wide">
     <div data-reveal>
       <span class="eyebrow">Our Curriculum</span>
-      <h2>The syllabus is the floor, not the ceiling.</h2>
+      <h2><?= e(get_setting('curriculum_title', 'The syllabus is the floor, not the ceiling.')) ?></h2>
       <div class="rule"></div>
       <p class="lede mt-3">
-        We follow the <?= e(SCHOOL_BOARD) ?> framework in full, then teach it the way children actually
-        learn: concrete before abstract, spoken before written, application before assessment.
+        <?= e(get_setting('curriculum_lede', 'We follow the ' . SCHOOL_BOARD . ' framework in full, then teach it the way children actually learn: concrete before abstract, spoken before written, application before assessment.')) ?>
       </p>
       <p class="mt-2">
-        Lessons are planned around a single question — <em>what should a child be able to do at the end
-        of this class that they could not do at the start?</em> Teachers check that answer before moving
-        on, using quick oral checks, worksheets and hands-on tasks rather than waiting for a term exam
-        to reveal a gap.
+        <?= e(get_setting('curriculum_p2', 'Lessons are planned around a single question — what should a child be able to do at the end of this class that they could not do at the start? Teachers check that answer before moving on, using quick oral checks, worksheets and hands-on tasks rather than waiting for a term exam to reveal a gap.')) ?>
       </p>
       <ul class="checklist mt-3">
         <li><?= icon('check') ?><span><strong>Concept-first.</strong> Children explain their reasoning aloud before writing it down.</span></li>
@@ -54,64 +50,53 @@ require_once __DIR__ . '/includes/header.php';
     </div>
 
     <?php
-    $wings = [
-        [
-            'id' => 'pre-primary', 'name' => 'Pre-Primary Wing', 'range' => 'Nursery · LKG · UKG',
-            'img' => 'pre-primary.jpg', 'tone' => 3,
-            'lede' => 'The years that decide whether a child finds school a happy place. Everything here is play with a purpose.',
-            'points' => [
-                'Phonics-led pre-reading and sound blending',
-                'Number readiness through counting material and games',
-                'Fine motor work — tracing, threading, colouring, clay',
-                'Rhymes, storytelling, puppet play and show-and-tell',
-                'Toilet-trained care with trained caregivers in every section',
-                'No homework. Learning finishes at the school gate.',
+    try {
+        $db = get_db();
+        $dbWings = $db->query("SELECT * FROM `academic_wings` WHERE `is_active` = 1 ORDER BY `display_order` ASC, `id` ASC")->fetchAll();
+    } catch (Exception $e) { $dbWings = []; }
+
+    if (empty($dbWings)) {
+        $dbWings = [
+            [
+                'wing_key' => 'pre-primary', 'name' => 'Pre-Primary Wing', 'class_range' => 'Nursery · LKG · UKG',
+                'image_path' => 'pre-primary.jpg', 'display_order' => 3,
+                'lede' => 'The years that decide whether a child finds school a happy place. Everything here is play with a purpose.',
+                'points' => "Phonics-led pre-reading and sound blending\nNumber readiness through counting material and games\nFine motor work — tracing, threading, colouring, clay\nRhymes, storytelling, puppet play and show-and-tell\nToilet-trained care with trained caregivers in every section\nNo homework. Learning finishes at the school gate.",
             ],
-        ],
-        [
-            'id' => 'primary', 'name' => 'Primary Wing', 'range' => 'Class I to Class V',
-            'img' => 'primary.jpg', 'tone' => 1,
-            'lede' => 'Where the fundamentals are locked in — fluent reading, accurate mental maths and clear handwriting.',
-            'points' => [
-                'English, Hindi, Mathematics, EVS and General Knowledge',
-                'Computer literacy and library periods every week',
-                'Mental maths drills and structured spelling programme',
-                'EVS taught through observation, field walks and projects',
-                'Art, music, dance and games on the regular timetable',
-                'Continuous assessment — no single high-stakes paper',
+            [
+                'wing_key' => 'primary', 'name' => 'Primary Wing', 'class_range' => 'Class I to Class V',
+                'image_path' => 'primary.jpg', 'display_order' => 1,
+                'lede' => 'Where the fundamentals are locked in — fluent reading, accurate mental maths and clear handwriting.',
+                'points' => "English, Hindi, Mathematics, EVS and General Knowledge\nComputer literacy and library periods every week\nMental maths drills and structured spelling programme\nEVS taught through observation, field walks and projects\nArt, music, dance and games on the regular timetable\nContinuous assessment — no single high-stakes paper",
             ],
-        ],
-        [
-            'id' => 'middle', 'name' => 'Middle Wing', 'range' => 'Class VI to Class VIII',
-            'img' => 'middle.jpg', 'tone' => 2,
-            'lede' => 'Subject specialists take over, laboratory work begins, and children learn how to study — not just what.',
-            'points' => [
-                'Science with regular laboratory practicals',
-                'Mathematics with reasoning and word-problem focus',
-                'Social Science: History, Civics and Geography',
-                'Third language, ICT and project-based assessment',
-                'Presentation, debate and written-expression training',
-                'Olympiad, quiz and scholarship exam preparation',
+            [
+                'wing_key' => 'middle', 'name' => 'Middle Wing', 'class_range' => 'Class VI to Class VIII',
+                'image_path' => 'middle.jpg', 'display_order' => 2,
+                'lede' => 'Subject specialists take over, laboratory work begins, and children learn how to study — not just what.',
+                'points' => "Science with regular laboratory practicals\nMathematics with reasoning and word-problem focus\nSocial Science: History, Civics and Geography\nThird language, ICT and project-based assessment\nPresentation, debate and written-expression training\nOlympiad, quiz and scholarship exam preparation",
             ],
-        ],
-    ];
-    foreach ($wings as $i => $w): ?>
-      <div class="split split--wide mt-4" id="<?= e($w['id']) ?>" style="<?= $i % 2 ? 'direction:rtl' : '' ?>">
+        ];
+    }
+    $totalWings = count($dbWings);
+    foreach ($dbWings as $i => $w):
+        $pts = is_array($w['points']) ? $w['points'] : explode("\n", trim($w['points']));
+    ?>
+      <div class="split split--wide mt-4" id="<?= e($w['wing_key'] ?? ('wing-'.$i)) ?>" style="<?= $i % 2 ? 'direction:rtl' : '' ?>">
         <div data-reveal style="direction:ltr">
-          <?= media($w['img'], $w['name'], $w['tone'], '', '16/11') ?>
+          <?= media($w['image_path'], $w['name'], (int)($w['display_order'] ?? ($i + 1)), '', '16/11') ?>
         </div>
         <div data-reveal data-delay="1" style="direction:ltr">
-          <span class="pcard__tag"><?= e($w['range']) ?></span>
+          <span class="pcard__tag"><?= e($w['class_range']) ?></span>
           <h2 class="mt-2" style="font-size:clamp(1.6rem,2.6vw,2.2rem)"><?= e($w['name']) ?></h2>
           <p class="lede mt-2"><?= e($w['lede']) ?></p>
           <ul class="checklist mt-3">
-            <?php foreach ($w['points'] as $p): ?>
-              <li><?= icon('check') ?><span><?= e($p) ?></span></li>
-            <?php endforeach; ?>
+            <?php foreach ($pts as $p): if (trim($p) !== ''): ?>
+              <li><?= icon('check') ?><span><?= e(trim($p)) ?></span></li>
+            <?php endif; endforeach; ?>
           </ul>
         </div>
       </div>
-      <?php if ($i < 2): ?><div class="divider"></div><?php endif; ?>
+      <?php if ($i < $totalWings - 1): ?><div class="divider"></div><?php endif; ?>
     <?php endforeach; ?>
   </div>
 </section>

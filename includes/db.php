@@ -282,6 +282,55 @@ function init_db_schema(PDO $db): void
         }
     }
 
+    // 8. Create Sections Why Choose Us table
+    $db->exec("CREATE TABLE IF NOT EXISTS `sections_why_choose` (
+        `id` INT AUTO_INCREMENT PRIMARY KEY,
+        `icon` VARCHAR(50) NOT NULL DEFAULT 'check',
+        `title` VARCHAR(255) NOT NULL,
+        `description` TEXT NOT NULL,
+        `display_order` INT DEFAULT 0,
+        `is_active` TINYINT DEFAULT 1,
+        `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+    // 9. Create Academic Wings table
+    $db->exec("CREATE TABLE IF NOT EXISTS `academic_wings` (
+        `id` INT AUTO_INCREMENT PRIMARY KEY,
+        `wing_key` VARCHAR(50) NOT NULL UNIQUE,
+        `name` VARCHAR(150) NOT NULL,
+        `class_range` VARCHAR(150) NOT NULL,
+        `image_path` VARCHAR(255) NOT NULL,
+        `lede` TEXT NOT NULL,
+        `points` TEXT NOT NULL,
+        `display_order` INT DEFAULT 0,
+        `is_active` TINYINT DEFAULT 1,
+        `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+    // 10. Create Core Values table
+    $db->exec("CREATE TABLE IF NOT EXISTS `core_values` (
+        `id` INT AUTO_INCREMENT PRIMARY KEY,
+        `icon` VARCHAR(50) NOT NULL DEFAULT 'heart',
+        `title` VARCHAR(150) NOT NULL,
+        `description` TEXT NOT NULL,
+        `display_order` INT DEFAULT 0,
+        `is_active` TINYINT DEFAULT 1,
+        `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+    // 11. Create Facilities List table
+    $db->exec("CREATE TABLE IF NOT EXISTS `facilities_list` (
+        `id` INT AUTO_INCREMENT PRIMARY KEY,
+        `category` VARCHAR(50) DEFAULT 'campus',
+        `icon` VARCHAR(50) DEFAULT 'laptop',
+        `title` VARCHAR(255) NOT NULL,
+        `description` TEXT NOT NULL,
+        `image_path` VARCHAR(255) DEFAULT NULL,
+        `display_order` INT DEFAULT 0,
+        `is_active` TINYINT DEFAULT 1,
+        `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
     // --- SEED TESTIMONIALS IF EMPTY ---
     $testCount = (int) $db->query("SELECT COUNT(*) FROM `testimonials`")->fetchColumn();
     if ($testCount === 0) {
@@ -293,6 +342,79 @@ function init_db_schema(PDO $db): void
         $stmt = $db->prepare("INSERT INTO `testimonials` (`quote`, `author_name`, `author_title`, `rating`, `display_order`) VALUES (?, ?, ?, ?, ?)");
         foreach ($quotes as $q) {
             $stmt->execute([$q[0], $q[1], $q[2], $q[3], $q[4]]);
+        }
+    }
+
+    // --- SEED SECTIONS WHY CHOOSE IF EMPTY ---
+    $whyCount = (int) $db->query("SELECT COUNT(*) FROM `sections_why_choose`")->fetchColumn();
+    if ($whyCount === 0) {
+        $whyItems = [
+            ['users', 'Attentive Class Sizes', 'Sections are capped so teaching stays personal and no child slips quietly behind.', 1],
+            ['bulb', 'Concept-Led Learning', 'Activity, enquiry and application — children explain the why, not just recite the what.', 2],
+            ['shield', 'Safety You Can Verify', 'CCTV-monitored corridors, controlled entry, verified staff and a trained first-aid room.', 3],
+            ['palette', 'Arts, Sport & Music', 'Timetabled — not optional. Every child performs, plays and creates each term.', 4],
+            ['laptop', 'Smart, Practical Rooms', 'Digital boards, a hands-on science lab and a computer lab used weekly by every class.', 5],
+            ['heart', 'Values That Travel', 'Courtesy, honesty and responsibility taught as habits, reinforced by house mentors.', 6],
+        ];
+        $stmt = $db->prepare("INSERT INTO `sections_why_choose` (`icon`, `title`, `description`, `display_order`) VALUES (?, ?, ?, ?)");
+        foreach ($whyItems as $w) {
+            $stmt->execute($w);
+        }
+    }
+
+    // --- SEED ACADEMIC WINGS IF EMPTY ---
+    $wingsCount = (int) $db->query("SELECT COUNT(*) FROM `academic_wings`")->fetchColumn();
+    if ($wingsCount === 0) {
+        $wingsItems = [
+            ['pre-primary', 'Pre-Primary Wing', 'Nursery · LKG · UKG', 'pre-primary.jpg', 'The years that decide whether a child finds school a happy place. Everything here is play with a purpose.', "Phonics-led pre-reading and sound blending\nNumber readiness through counting material and games\nFine motor work — tracing, threading, colouring, clay\nRhymes, storytelling, puppet play and show-and-tell\nToilet-trained care with trained caregivers in every section\nNo homework. Learning finishes at the school gate.", 1],
+            ['primary', 'Primary Wing', 'Class I to Class V', 'primary.jpg', 'Where the fundamentals are locked in — fluent reading, accurate mental maths and clear handwriting.', "English, Hindi, Mathematics, EVS and General Knowledge\nComputer literacy and library periods every week\nMental maths drills and structured spelling programme\nEVS taught through observation, field walks and projects\nArt, music, dance and games on the regular timetable\nContinuous assessment — no single high-stakes paper", 2],
+            ['middle', 'Middle Wing', 'Class VI to Class VIII', 'middle.jpg', 'Subject specialists take over, laboratory work begins, and children learn how to study — not just what.', "Science with regular laboratory practicals\nMathematics with reasoning and word-problem focus\nSocial Science: History, Civics and Geography\nThird language, ICT and project-based assessment\nPresentation, debate and written-expression training\nOlympiad, quiz and scholarship exam preparation", 3],
+        ];
+        $stmt = $db->prepare("INSERT INTO `academic_wings` (`wing_key`, `name`, `class_range`, `image_path`, `lede`, `points`, `display_order`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        foreach ($wingsItems as $wi) {
+            $stmt->execute($wi);
+        }
+    }
+
+    // --- SEED CORE VALUES IF EMPTY ---
+    $valCount = (int) $db->query("SELECT COUNT(*) FROM `core_values`")->fetchColumn();
+    if ($valCount === 0) {
+        $valItems = [
+            ['shield', 'Integrity', 'Doing the right thing when the marks do not depend on it.', 1],
+            ['users', 'Respect', 'For teachers, for staff, for classmates who are different.', 2],
+            ['award', 'Diligence', 'Finishing what you start, at the standard you are capable of.', 3],
+            ['heart', 'Empathy', 'Noticing the child sitting alone, and doing something about it.', 4],
+            ['leaf', 'Responsibility', 'For your books, your words, your classroom and your planet.', 5],
+        ];
+        $stmt = $db->prepare("INSERT INTO `core_values` (`icon`, `title`, `description`, `display_order`) VALUES (?, ?, ?, ?)");
+        foreach ($valItems as $vi) {
+            $stmt->execute($vi);
+        }
+    }
+
+    // --- SEED FACILITIES LIST IF EMPTY ---
+    $facListCount = (int) $db->query("SELECT COUNT(*) FROM `facilities_list`")->fetchColumn();
+    if ($facListCount === 0) {
+        $facItems = [
+            ['campus', 'laptop', 'Smart Classrooms', 'Airy, well-lit rooms with digital boards, so a concept can be shown as well as explained.', 'classroom.jpg', 1],
+            ['campus', 'flask', 'Science Laboratory', 'A working lab where Middle Wing students handle apparatus themselves under supervision.', 'lab.jpg', 2],
+            ['campus', 'laptop', 'Computer Laboratory', 'One machine per child in a period, with a structured ICT syllabus from the Primary Wing upward.', 'computer.jpg', 3],
+            ['campus', 'library', 'Library & Reading Room', 'Graded readers, reference sets and story collections — with a timetabled period for every class.', 'library.jpg', 4],
+            ['campus', 'ball', 'Sports Ground', 'Space for athletics, cricket, football, kho-kho and kabaddi, plus indoor games for wet days.', 'sports.jpg', 5],
+            ['campus', 'music', 'Music, Dance & Art', 'Dedicated rooms and instructors — because a stage changes a shy child faster than advice does.', 'arts.jpg', 6],
+            ['safety', 'camera', 'CCTV coverage', 'Corridors, entry points, the ground and common areas are monitored through the day.', 'safety.jpg', 7],
+            ['safety', 'shield', 'Controlled entry & exit', 'Gate security, visitor logging and a strict pick-up protocol — children leave only with an authorised adult.', NULL, 8],
+            ['safety', 'heart', 'Medical room & first aid', 'A dedicated care room, trained first-aid staff and immediate parent notification for any incident.', NULL, 9],
+            ['safety', 'users', 'Verified staff', 'Background-checked teachers and support staff, with female caregivers assigned to the Pre-Primary Wing.', NULL, 10],
+            ['transport', 'bus', 'School Transport', 'Buses that run on time, on routes you can track across the city.', 'bus.jpg', 11],
+            ['extras', 'leaf', 'Green Campus', 'Planted, shaded corners and an Eco Club that actually maintains them.', NULL, 12],
+            ['extras', 'bulb', 'Activity Room', 'Space for clubs, storytelling, drama and hands-on project work.', NULL, 13],
+            ['extras', 'trophy', 'House System', 'Four houses competing all year in sport, quizzing, art and debate.', NULL, 14],
+            ['extras', 'chat', 'Parent Portal', 'Circulars, results and attendance shared promptly through official channels.', NULL, 15],
+        ];
+        $stmt = $db->prepare("INSERT INTO `facilities_list` (`category`, `icon`, `title`, `description`, `image_path`, `display_order`) VALUES (?, ?, ?, ?, ?, ?)");
+        foreach ($facItems as $fi) {
+            $stmt->execute($fi);
         }
     }
 }
